@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'optparse'
+require 'stylegen'
+
+@options = {}
+
+OptionParser.new(version=1.0) do |opts|
+  opts.on_tail("--version", "Show version") do
+    puts Stylegen::VERSION
+    exit
+  end
+end.parse!
+
+data = File.open("theme.yaml") { |file| YAML.load(file) }
+generator = Stylegen::Generator.new(data)
+generator.generate
