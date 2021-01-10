@@ -58,7 +58,7 @@ module Stylegen
       out "#{access_level} extension #{system_name}Color {"
       out ""
       out "    var uiColor: UIColor {"
-      out "        guard let color = _colorLUT[self] else {"
+      out "        guard let color = Self.colorLUT[self] else {"
       out "            preconditionFailure(\"Color not found\")"
       out "        }"
       out ""
@@ -124,13 +124,17 @@ module Stylegen
     end
 
     def _generate_lut
-      out "private let _colorLUT: [#{system_name}Color: UIColor] = ["
+      out "private extension #{system_name}Color {"
+      out ""
+      out "    private static let colorLUT: [#{system_name}Color: UIColor] = ["
 
       @data["colors"].each do |key, value|
-        out "    .#{inflector.camelize_lower(key)}: #{_generate_color(value)},"
+        out "        .#{inflector.camelize_lower(key)}: #{_generate_color(value)},"
       end
 
-      out "]"
+      out "    ]"
+      out ""
+      out "}"
       out ""
     end
 
