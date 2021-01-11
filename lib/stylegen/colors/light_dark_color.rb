@@ -9,8 +9,8 @@ module Stylegen
 
       result = ""
       result << "UIColor(\n"
-      result << indent_prefix + "    light: #{@light.to_s},\n"
-      result << indent_prefix + "    dark: #{@dark.to_s}\n"
+      result << indent_prefix + "    light: #{@light.to_s(indent + 4)},\n"
+      result << indent_prefix + "    dark: #{@dark.to_s(indent + 4)}\n"
       result << indent_prefix + ")"
 
       result
