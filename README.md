@@ -12,7 +12,7 @@ cd stylegen
 rake install
 ```
 
-* This will change once I start distributing the tool as a Ruby gem.
+\* This will change once I start distributing the tool as a Ruby gem.
 
 ## How to use
 
