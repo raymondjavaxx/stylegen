@@ -61,13 +61,13 @@ module Stylegen
         Color.from_hex(data["color"], data["alpha"])
       elsif data.key?("light")
         LightDarkColor.new(
-          generate_color(data["light"]),
-          generate_color(data["dark"])
+            generate_color(data["light"]),
+            generate_color(data["dark"])
         )
       elsif data.key?("base")
         BaseElevatedColor.new(
-          generate_color(data["base"]),
-          generate_color(data["elevated"])
+            generate_color(data["base"]),
+            generate_color(data["elevated"])
         )
       end
     end

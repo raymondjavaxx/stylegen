@@ -2,6 +2,8 @@
 
 module Stylegen
   class Color
+    attr_reader :red, :green, :blue, :alpha
+
     def initialize(r, g, b, a)
       @red, @green, @blue, @alpha = r, g, b, a
     end
@@ -18,12 +20,12 @@ module Stylegen
       Color.new(r.round(max_digits), g.round(max_digits), b.round(max_digits), alpha || 1.0)
     end
 
-    def is_grayscale
+    def grayscale?
       @red == @green && @green == @blue
     end
 
     def to_s(indent=0)
-      if is_grayscale
+      if grayscale?
         "UIColor(white: #{@red}, alpha: #{@alpha})"
       else
         "UIColor(red: #{@red}, green: #{@green}, blue: #{@blue}, alpha: #{@alpha})"
