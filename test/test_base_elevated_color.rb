@@ -18,7 +18,7 @@ class TestBaseElevatedColor < MiniTest::Unit::TestCase
       )
     CODE
 
-    assert_equal color.to_s, expected
+    assert_equal expected, color.to_s
 
     # Additional indentation
 
@@ -29,6 +29,6 @@ class TestBaseElevatedColor < MiniTest::Unit::TestCase
           )
     CODE
 
-    assert_equal color.to_s(4), expected
+    assert_equal expected, color.to_s(4)
   end
 end
