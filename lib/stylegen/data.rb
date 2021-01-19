@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dry/inflector'
 require 'stylegen/version'
 require 'stylegen/colors'
@@ -48,22 +50,24 @@ module Stylegen
 
     def colors
       @data["colors"].each do |key, value|
-        yield inflector.camelize_lower(key), _generate_color(value)
+        yield inflector.camelize_lower(key), generate_color(value)
       end
     end
 
-    def _generate_color(data)
+    private
+
+    def generate_color(data)
       if data.key?("color")
         Color.from_hex(data["color"], data["alpha"])
       elsif data.key?("light")
         LightDarkColor.new(
-            _generate_color(data["light"]),
-            _generate_color(data["dark"])
+          generate_color(data["light"]),
+          generate_color(data["dark"])
         )
       elsif data.key?("base")
         BaseElevatedColor.new(
-            _generate_color(data["base"]),
-            _generate_color(data["elevated"])
+          generate_color(data["base"]),
+          generate_color(data["elevated"])
         )
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'stylegen/data'
 
 module Stylegen
@@ -12,13 +14,15 @@ module Stylegen
     end
 
     def generate
-      _generate_header
-      _generate_enums
-      _generate_lut
-      _generate_extensions
+      generate_header
+      generate_enums
+      generate_lut
+      generate_extensions
     end
 
-    def _generate_header
+    private
+
+    def generate_header
       out "//"
       out "//  #{@data.basename}"
       out "//"
@@ -30,7 +34,7 @@ module Stylegen
       out ""
     end
 
-    def _generate_enums
+    def generate_enums
       out "#{@data.access_level} enum #{@data.enum_name}: Int {"
 
       @data.enum_members do |name|
@@ -41,7 +45,7 @@ module Stylegen
       out ""
     end
 
-    def _generate_extensions
+    def generate_extensions
       out "#{@data.access_level} extension #{@data.enum_name} {"
       out ""
       out "    var uiColor: UIColor {"
@@ -110,7 +114,7 @@ module Stylegen
       out "}"
     end
 
-    def _generate_lut
+    def generate_lut
       out "private extension #{@data.enum_name} {"
       out ""
       out "    private static let colorLUT: [#{@data.enum_name}: UIColor] = ["

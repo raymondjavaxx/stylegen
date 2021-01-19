@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Stylegen
   class LightDarkColor
     def initialize(light, dark)
@@ -7,13 +9,13 @@ module Stylegen
     def to_s(indent=0)
       indent_prefix = " " * indent
 
-      result = ""
-      result << "UIColor(\n"
-      result << indent_prefix + "    light: #{@light.to_s(indent + 4)},\n"
-      result << indent_prefix + "    dark: #{@dark.to_s(indent + 4)}\n"
+      result = []
+      result << "UIColor("
+      result << indent_prefix + "    light: #{@light.to_s(indent + 4)},"
+      result << indent_prefix + "    dark: #{@dark.to_s(indent + 4)}"
       result << indent_prefix + ")"
 
-      result
+      result.join("\n")
     end
   end
 end
