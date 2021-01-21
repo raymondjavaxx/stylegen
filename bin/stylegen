@@ -15,5 +15,17 @@ OptionParser.new(version=1.0) do |opts|
 end.parse!
 
 data = File.open('theme.yaml') { |file| YAML.load(file) }
+
+validator = Stylegen::Validator.new()
+unless validator.valid?(data)
+  STDERR.puts "theme.yaml contains one or more errors:"
+
+  validator.validate(data).each do |e|
+    STDERR.puts "  #{e}"
+  end
+
+  exit(1)
+end
+
 generator = Stylegen::Generator.new(data)
 generator.generate
