@@ -2,7 +2,7 @@
 
 require_relative 'helper'
 
-class TestBaseElevatedColor < MiniTest::Unit::TestCase
+class TestBaseElevatedColor < MiniTest::Test
   def test_to_string
     color = Stylegen::BaseElevatedColor.new(
         Stylegen::Color.from_hex("#000000"),

@@ -2,7 +2,7 @@
 
 require_relative 'helper'
 
-class TestLightDarkColor < MiniTest::Unit::TestCase
+class TestLightDarkColor < MiniTest::Test
   def test_to_string
     color = Stylegen::LightDarkColor.new(
         Stylegen::Color.from_hex("#FFFFFF"),

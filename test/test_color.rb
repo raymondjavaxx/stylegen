@@ -2,7 +2,7 @@
 #
 require_relative 'helper'
 
-class TestColor < MiniTest::Unit::TestCase
+class TestColor < MiniTest::Test
   def test_parsing
     color = Stylegen::Color.from_hex("#FF8000")
     assert_equal 1.0, color.red
