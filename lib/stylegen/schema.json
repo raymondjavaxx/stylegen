@@ -67,6 +67,14 @@
     }
   },
   "properties": {
+    "access_level": {
+      "type": "string",
+      "description": "Access level of the generated Swift code.",
+      "enum": [
+        "internal",
+        "public"
+      ]
+    },
     "system_name": {
       "type": "string",
       "description": "Name of the design system or theme."
