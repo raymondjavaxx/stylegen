@@ -34,6 +34,9 @@ colors:
   accent: # Keys will be used as color names.
     color: "#00BFC2" # Hex color
 
+  # Shorthand syntax  
+  warning: "#ED4337"
+
   text_primary:
     light: # Value for light mode
       color: "#000000"
@@ -52,13 +55,12 @@ colors:
       alpha: 0.6
 
   primary_background:
-    light:
-      color: "#FFFFFF"
+    light: "#FFFFFF"
     dark:
-      base: # Value for base (non-elevated) level
-        color: "#0D0D0D"
-      elevated: # Value for elevated level
-        color: "#191D1D"
+      # Value for base (non-elevated) level
+      base: "#0D0D0D"
+      # Value for elevated level
+      elevated: "#191D1D"
 ```
 
 After creating the theme file run:

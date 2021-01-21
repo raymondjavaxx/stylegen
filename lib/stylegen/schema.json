@@ -4,8 +4,7 @@
   "type": "object",
   "definitions": {
     "AbstractColor": {
-      "type": "object",
-      "anyOf": [
+      "oneOf": [
         {
           "$ref": "#/definitions/HexColor"
         },

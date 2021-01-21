@@ -57,7 +57,9 @@ module Stylegen
     private
 
     def generate_color(data)
-      if data.key?("color")
+      if data.is_a?(String)
+        Color.from_hex(data)
+      elsif data.key?("color")
         Color.from_hex(data["color"], data["alpha"])
       elsif data.key?("light")
         LightDarkColor.new(
