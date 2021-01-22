@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-#
-require_relative 'helper'
+
+require_relative "helper"
 
 class TestColor < MiniTest::Test
   def test_parsing
@@ -42,7 +42,7 @@ class TestColor < MiniTest::Test
     assert color.grayscale?
 
     color = Stylegen::Color.new(1, 1, 0.9, 1)
-    assert color.grayscale? == false
+    refute color.grayscale?
   end
 
   def test_to_string

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
-gem "dry-inflector", ">= 0.2.0"
+gemspec

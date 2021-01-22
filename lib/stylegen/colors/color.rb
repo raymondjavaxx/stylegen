@@ -8,7 +8,7 @@ module Stylegen
       @red, @green, @blue, @alpha = r, g, b, a
     end
 
-    def self.from_hex(hex, alpha=nil)
+    def self.from_hex(hex, alpha = nil)
       if (match = hex.downcase.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/))
         r = Integer(match.captures[0], 16) / 255.0
         g = Integer(match.captures[1], 16) / 255.0
@@ -18,7 +18,7 @@ module Stylegen
         g = Integer(match.captures[1] * 2, 16) / 255.0
         b = Integer(match.captures[2] * 2, 16) / 255.0
       else
-        raise ArgumentError.new("Invalid color syntax: #{hex}")
+        raise ArgumentError, "Invalid color syntax: #{hex}"
       end
 
       max_digits = 2
@@ -30,7 +30,7 @@ module Stylegen
       @red == @green && @green == @blue
     end
 
-    def to_s(struct_name, indent=0)
+    def to_s(struct_name, _indent = 0)
       if grayscale?
         "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
       else

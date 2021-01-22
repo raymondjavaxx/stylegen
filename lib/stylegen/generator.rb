@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'stylegen/data'
+require "stylegen/data"
 
 module Stylegen
   class Generator

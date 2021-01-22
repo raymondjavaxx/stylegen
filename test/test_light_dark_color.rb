@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'helper'
+require_relative "helper"
 
 class TestLightDarkColor < MiniTest::Test
   def test_to_string
     color = Stylegen::LightDarkColor.new(
-        Stylegen::Color.from_hex("#FFFFFF"),
-        Stylegen::Color.from_hex("#333333")
+      Stylegen::Color.from_hex("#FFFFFF"),
+      Stylegen::Color.from_hex("#333333")
     )
 
     # Default indentation
@@ -32,4 +32,3 @@ class TestLightDarkColor < MiniTest::Test
     assert_equal expected, color.to_s("ThemeColor", 4)
   end
 end
-

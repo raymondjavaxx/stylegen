@@ -1,27 +1,27 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'yaml'
-require 'optparse'
-require 'stylegen'
+require "yaml"
+require "optparse"
+require "stylegen"
 
 @options = {}
 
-OptionParser.new(version=1.0) do |opts|
-  opts.on_tail('--version', 'Show version') do
+OptionParser.new do |opts|
+  opts.on_tail("--version", "Show version") do
     puts Stylegen::VERSION
     exit
   end
 end.parse!
 
-data = File.open('theme.yaml') { |file| YAML.load(file) }
+data = File.open("theme.yaml") { |file| YAML.safe_load(file) }
 
-validator = Stylegen::Validator.new()
+validator = Stylegen::Validator.new
 unless validator.valid?(data)
-  STDERR.puts "theme.yaml contains one or more errors:"
+  warn "theme.yaml contains one or more errors:"
 
   validator.validate(data).each do |e|
-    STDERR.puts "  #{e}"
+    warn "  #{e}"
   end
 
   exit(1)

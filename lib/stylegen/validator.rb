@@ -1,4 +1,6 @@
-require 'json_schemer'
+# frozen_string_literal: true
+
+require "json_schemer"
 
 module Stylegen
   class Validator
