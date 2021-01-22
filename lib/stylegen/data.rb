@@ -38,14 +38,8 @@ module Stylegen
       @data["access_level"] || "internal"
     end
 
-    def enum_name
+    def struct_name
       "#{system_name}Color"
-    end
-
-    def enum_members
-      @data["colors"].each do |key, value|
-        yield inflector.camelize_lower(key)
-      end
     end
 
     def colors

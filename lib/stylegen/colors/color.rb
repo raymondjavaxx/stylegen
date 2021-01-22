@@ -30,11 +30,11 @@ module Stylegen
       @red == @green && @green == @blue
     end
 
-    def to_s(indent=0)
+    def to_s(struct_name, indent=0)
       if grayscale?
-        "UIColor(white: #{@red}, alpha: #{@alpha})"
+        "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
       else
-        "UIColor(red: #{@red}, green: #{@green}, blue: #{@blue}, alpha: #{@alpha})"
+        "#{struct_name}(red: #{@red}, green: #{@green}, blue: #{@blue}, alpha: #{@alpha})"
       end
     end
   end

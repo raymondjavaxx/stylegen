@@ -6,13 +6,13 @@ module Stylegen
       @light, @dark = light, dark
     end
 
-    def to_s(indent=0)
+    def to_s(struct_name, indent=0)
       indent_prefix = " " * indent
 
       result = []
-      result << "UIColor("
-      result << indent_prefix + "    light: #{@light.to_s(indent + 4)},"
-      result << indent_prefix + "    dark: #{@dark.to_s(indent + 4)}"
+      result << "#{struct_name}("
+      result << indent_prefix + "    light: #{@light.to_s(struct_name, indent + 4)},"
+      result << indent_prefix + "    dark: #{@dark.to_s(struct_name, indent + 4)}"
       result << indent_prefix + ")"
 
       result.join("\n")

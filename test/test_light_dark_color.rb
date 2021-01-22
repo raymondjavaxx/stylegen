@@ -12,24 +12,24 @@ class TestLightDarkColor < MiniTest::Test
     # Default indentation
 
     expected = <<~CODE.chomp
-      UIColor(
-          light: UIColor(white: 1.0, alpha: 1.0),
-          dark: UIColor(white: 0.2, alpha: 1.0)
+      ThemeColor(
+          light: ThemeColor(white: 1.0, alpha: 1.0),
+          dark: ThemeColor(white: 0.2, alpha: 1.0)
       )
     CODE
 
-    assert_equal expected, color.to_s
+    assert_equal expected, color.to_s("ThemeColor")
 
     # Additional indentation
 
     expected = <<~CODE.chomp
-      UIColor(
-              light: UIColor(white: 1.0, alpha: 1.0),
-              dark: UIColor(white: 0.2, alpha: 1.0)
+      ThemeColor(
+              light: ThemeColor(white: 1.0, alpha: 1.0),
+              dark: ThemeColor(white: 0.2, alpha: 1.0)
           )
     CODE
 
-    assert_equal expected, color.to_s(4)
+    assert_equal expected, color.to_s("ThemeColor", 4)
   end
 end
 

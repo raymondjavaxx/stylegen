@@ -12,23 +12,23 @@ class TestBaseElevatedColor < MiniTest::Test
     # Default indentation
 
     expected = <<~CODE.chomp
-      UIColor(
-          base: UIColor(white: 0.0, alpha: 1.0),
-          elevated: UIColor(white: 0.2, alpha: 1.0)
+      ThemeColor(
+          base: ThemeColor(white: 0.0, alpha: 1.0),
+          elevated: ThemeColor(white: 0.2, alpha: 1.0)
       )
     CODE
 
-    assert_equal expected, color.to_s
+    assert_equal expected, color.to_s("ThemeColor")
 
     # Additional indentation
 
     expected = <<~CODE.chomp
-      UIColor(
-              base: UIColor(white: 0.0, alpha: 1.0),
-              elevated: UIColor(white: 0.2, alpha: 1.0)
+      ThemeColor(
+              base: ThemeColor(white: 0.0, alpha: 1.0),
+              elevated: ThemeColor(white: 0.2, alpha: 1.0)
           )
     CODE
 
-    assert_equal expected, color.to_s(4)
+    assert_equal expected, color.to_s("ThemeColor",4)
   end
 end

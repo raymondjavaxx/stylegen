@@ -47,12 +47,12 @@ class TestColor < MiniTest::Test
 
   def test_to_string
     color = Stylegen::Color.from_hex("#00FF00")
-    expected = "UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)"
-    assert_equal expected, color.to_s
+    expected = "ThemeColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)"
+    assert_equal expected, color.to_s("ThemeColor")
 
     # Grayscale
     color = Stylegen::Color.from_hex("#FFFFFF")
-    expected = "UIColor(white: 1.0, alpha: 1.0)"
-    assert_equal expected, color.to_s
+    expected = "ThemeColor(white: 1.0, alpha: 1.0)"
+    assert_equal expected, color.to_s("ThemeColor")
   end
 end
