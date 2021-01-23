@@ -2,6 +2,8 @@
 
 A CLI utility that allows managing the colors used in an iOS app from a centralized YAML file in a type-safe way.
 
+![CI](https://github.com/raymondjavaxx/stylegen/workflows/CI/badge.svg?branch=master)
+
 ## Installing
 
 You can install `stylegen` manually by running:
