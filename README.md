@@ -4,15 +4,17 @@ A CLI utility that allows managing the colors used in an iOS app from a centrali
 
 ## Installing
 
-For now you will have to clone this repository and and run `rake install`.
+You can install `stylegen` manually by running:
 
 ```shell
-git clone https://github.com/raymondjavaxx/stylegen.git
-cd stylegen
-rake install
+$ gem install stylegen
 ```
 
-\* This will change once I start distributing the tool as a Ruby gem.
+Or by adding the following entry to your [Gemfile](https://guides.cocoapods.org/using/a-gemfile.html). Then running `$ bundle install`.
+
+```ruby
+gem "stylegen"
+```
 
 ## How to use
 
@@ -83,7 +85,7 @@ Now you can just do:
 self.backgroundColor = .theme(.accent)
 ```
 
-The `.theme()` static method serves as a namespace, to easily distinguish between UIKit's built-in colors and our custom colors. The name of the namespacing function is inferred from the `system_name` property in the YAML file.
+The `.theme()` static method serves as a namespace to easily distinguish between UIKit's built-in colors and our custom colors. The name of the namespacing function is inferred from the `system_name` property in the YAML file.
 
 ## TODO
 
