@@ -12,7 +12,7 @@ You can install `stylegen` manually by running:
 $ gem install stylegen
 ```
 
-Or by adding the following entry to your [Gemfile](https://guides.cocoapods.org/using/a-gemfile.html). Then running `$ bundle install`.
+Or by adding the following entry to your [Gemfile](https://guides.cocoapods.org/using/a-gemfile.html), then running `$ bundle install`.
 
 ```ruby
 gem "stylegen"
