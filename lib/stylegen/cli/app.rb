@@ -22,17 +22,19 @@ module Stylegen
       desc "Generates a sample theme.yaml file in the current directory"
       command :init do |c|
         c.action do
-          exit_now!("theme.yaml already exists!") if File.exist?("theme.yaml")
+          exit_now!("'theme.yaml' already exists!") if File.exist?("theme.yaml")
 
           template = File.read(File.join(__dir__, "template.yaml"))
           File.write("theme.yaml", template)
+
+          puts "Generated 'theme.yaml'."
         end
       end
 
       desc "Generates the Swift colors file"
       command :build do |c|
         c.action do
-          exit_now!("theme.yaml not found. Create one with 'stylegen init'.") unless File.exist?("theme.yaml")
+          exit_now!("'theme.yaml' not found. Create one with 'stylegen init'.") unless File.exist?("theme.yaml")
 
           data = File.open("theme.yaml") { |file| YAML.safe_load(file) }
 
