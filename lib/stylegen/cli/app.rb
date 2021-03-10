@@ -8,7 +8,6 @@ require "stylegen/generator"
 
 module Stylegen
   module CLI
-
     class App
       extend GLI::App
 
@@ -23,9 +22,7 @@ module Stylegen
       desc "Generates a sample theme.yaml file in the current directory"
       command :init do |c|
         c.action do
-          if File.exist?('theme.yaml')
-            exit_now!("theme.yaml already exists!")
-          end
+          exit_now!("theme.yaml already exists!") if File.exist?("theme.yaml")
 
           template = File.read(File.join(__dir__, "template.yaml"))
           File.write("theme.yaml", template)
@@ -54,7 +51,6 @@ module Stylegen
           generator.generate
         end
       end
-
     end
   end
 end
