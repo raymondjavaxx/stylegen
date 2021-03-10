@@ -32,6 +32,8 @@ module Stylegen
       desc "Generates the Swift colors file"
       command :build do |c|
         c.action do
+          exit_now!("theme.yaml not found. Create one with 'stylegen init'.") unless File.exist?("theme.yaml")
+
           data = File.open("theme.yaml") { |file| YAML.safe_load(file) }
 
           validator = Validator.new
