@@ -1,31 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "yaml"
-require "optparse"
-require "stylegen"
+require "stylegen/cli"
 
-@options = {}
-
-OptionParser.new do |opts|
-  opts.on_tail("--version", "Show version") do
-    puts Stylegen::VERSION
-    exit
-  end
-end.parse!
-
-data = File.open("theme.yaml") { |file| YAML.safe_load(file) }
-
-validator = Stylegen::Validator.new
-unless validator.valid?(data)
-  warn "theme.yaml contains one or more errors:"
-
-  validator.validate(data).each do |e|
-    warn "  #{e}"
-  end
-
-  exit(1)
-end
-
-generator = Stylegen::Generator.new(data)
-generator.generate
+exit Stylegen::CLI::App.run(ARGV)

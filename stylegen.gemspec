@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.license = "MIT"
 
+  s.add_runtime_dependency "gli", "~> 2.1"
   s.add_runtime_dependency "dry-inflector", ">= 0.2.0"
   s.add_runtime_dependency "json_schemer", ">= 0.2.0"
 
