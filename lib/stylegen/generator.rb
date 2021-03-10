@@ -20,6 +20,10 @@ module Stylegen
       generate_extensions
     end
 
+    def stats
+      @stats ||= { output_path: @data.output_path, color_count: @data.colors.count }
+    end
+
     private
 
     def generate_header
@@ -89,7 +93,7 @@ module Stylegen
       out "#{@data.access_level} extension #{@data.struct_name} {"
       out ""
 
-      @data.colors do |member, color|
+      @data.colors.each do |member, color|
         out "    static let #{member} = #{color.to_s(@data.struct_name, 4)}"
         out ""
       end

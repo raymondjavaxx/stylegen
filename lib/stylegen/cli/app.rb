@@ -51,6 +51,8 @@ module Stylegen
 
           generator = Generator.new(data)
           generator.generate
+
+          puts "Generated '#{generator.stats[:output_path]}' with #{generator.stats[:color_count]} colors."
         end
       end
     end

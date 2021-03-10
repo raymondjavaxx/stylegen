@@ -43,8 +43,8 @@ module Stylegen
     end
 
     def colors
-      @data["colors"].each do |key, value|
-        yield inflector.camelize_lower(key), generate_color(value)
+      @colors ||= @data["colors"].map do |key, value|
+        [inflector.camelize_lower(key), generate_color(value)]
       end
     end
 
