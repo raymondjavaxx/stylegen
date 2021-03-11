@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     stylegen (0.1.0)
-      dry-inflector (>= 0.2.0)
+      dry-inflector (~> 0.2.0)
       gli (~> 2.1)
-      json_schemer (>= 0.2.0)
+      json_schemer (~> 0.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -52,7 +52,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  minitest (>= 5.14.0)
+  minitest (~> 5.14)
   rake
   rubocop
   rubocop-minitest
