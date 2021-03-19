@@ -1,2 +1,6 @@
 .idea
 pkg
+
+# Testing artifacts
+theme.yaml
+Colors.swift
