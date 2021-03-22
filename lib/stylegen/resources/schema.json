@@ -83,6 +83,11 @@
       "minLength": 1,
       "description": "Path of generated Swift file."
     },
+    "swiftui": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enables SwiftUI support."
+    },
     "colors": {
       "type": "object",
       "description": "Key-value pairs of colors.",

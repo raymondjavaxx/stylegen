@@ -10,7 +10,7 @@ module Stylegen
     end
 
     def render
-      ERB.new(@content).result(binding)
+      ERB.new(@content, nil, "-").result(binding)
     end
   end
 end
