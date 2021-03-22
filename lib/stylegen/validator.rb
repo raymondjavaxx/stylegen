@@ -21,7 +21,7 @@ module Stylegen
     private
 
     def schema
-      @schema ||= JSONSchemer.schema(File.read(File.join(__dir__, "schema.json")))
+      @schema ||= JSONSchemer.schema(File.read(File.join(__dir__, "resources/schema.json")))
     end
   end
 end
