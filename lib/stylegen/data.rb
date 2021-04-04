@@ -30,6 +30,10 @@ module Stylegen
       @data["output_path"]
     end
 
+    def swiftui?
+      @data["swiftui"] || false
+    end
+
     def basename
       File.basename(@data["output_path"])
     end
