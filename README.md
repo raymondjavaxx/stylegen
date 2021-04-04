@@ -38,6 +38,9 @@ The generated YAML file will look similar to this:
 # Path of generated Swift file.
 output_path: "Colors.swift"
 
+# Enables SwiftUI support
+# swiftui: false
+
 # Key-value pairs of theme colors.
 colors:
 
@@ -101,5 +104,5 @@ colors. The name of the namespacing function gets inferred from the `system_name
 
 * ~~`$ stylegen init` command~~
 * Option to specify target frameworks: AppKit, UIKit, Core Graphics, and SwiftUI
-* SwiftUI support
+* ~~SwiftUI support~~
 * AppKit support
