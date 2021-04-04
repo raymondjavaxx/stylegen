@@ -7,6 +7,9 @@
 # Path of generated Swift file.
 output_path: "Colors.swift"
 
+# Enables SwiftUI support
+# swiftui: false
+
 # Key-value pairs of theme colors.
 colors:
 
