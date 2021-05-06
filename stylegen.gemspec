@@ -27,5 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop-minitest"
   s.add_development_dependency "rubocop-rake"
 
-  s.required_ruby_version = ">= 2.4.0"
+  s.required_ruby_version = ">= 2.5.0"
 end
