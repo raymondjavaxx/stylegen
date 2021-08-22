@@ -21,20 +21,30 @@ module Stylegen
         raise ArgumentError, "Invalid color syntax: #{hex}"
       end
 
-      max_digits = 2
+      max_precision = 16
 
-      Color.new(r.round(max_digits), g.round(max_digits), b.round(max_digits), alpha || 1.0)
+      Color.new(r.round(max_precision), g.round(max_precision), b.round(max_precision), alpha || 1.0)
     end
 
     def grayscale?
       @red == @green && @green == @blue
     end
 
-    def to_s(struct_name, _indent = 0)
+    def to_s(struct_name, indent = 0)
       if grayscale?
         "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
       else
-        "#{struct_name}(red: #{@red}, green: #{@green}, blue: #{@blue}, alpha: #{@alpha})"
+        indent_prefix = " " * indent
+
+        result = []
+        result << "#{struct_name}("
+        result << "#{indent_prefix}    red: #{@red},"
+        result << "#{indent_prefix}    green: #{@green},"
+        result << "#{indent_prefix}    blue: #{@blue},"
+        result << "#{indent_prefix}    alpha: #{@alpha}"
+        result << "#{indent_prefix})"
+
+        result.join("\n")
       end
     end
   end

@@ -6,14 +6,14 @@ class TestColor < MiniTest::Test
   def test_parsing
     color = Stylegen::Color.from_hex("#FF8000")
     assert_equal 1.0, color.red
-    assert_equal 0.5, color.green
+    assert_equal 0.5019607843137255, color.green
     assert_equal 0.0, color.blue
     assert_equal 1.0, color.alpha
 
     # Optional pound sign
     color = Stylegen::Color.from_hex("FF8000")
     assert_equal 1.0, color.red
-    assert_equal 0.5, color.green
+    assert_equal 0.5019607843137255, color.green
     assert_equal 0.0, color.blue
     assert_equal 1.0, color.alpha
 
@@ -25,14 +25,14 @@ class TestColor < MiniTest::Test
   def test_parsing_shorthand_syntax
     color = Stylegen::Color.from_hex("#FC0")
     assert_equal 1.0, color.red
-    assert_equal 0.8, color.green
+    assert_equal 0.8000000000000002, color.green
     assert_equal 0.0, color.blue
     assert_equal 1.0, color.alpha
 
     # Optional pound sign
     color = Stylegen::Color.from_hex("FC0")
     assert_equal 1.0, color.red
-    assert_equal 0.8, color.green
+    assert_equal 0.8000000000000002, color.green
     assert_equal 0.0, color.blue
     assert_equal 1.0, color.alpha
   end
