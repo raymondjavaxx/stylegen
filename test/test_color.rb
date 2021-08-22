@@ -47,7 +47,16 @@ class TestColor < MiniTest::Test
 
   def test_to_string
     color = Stylegen::Color.from_hex("#00FF00")
-    expected = "ThemeColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)"
+
+    expected = <<~CODE.strip
+      ThemeColor(
+          red: 0.0,
+          green: 1.0,
+          blue: 0.0,
+          alpha: 1.0
+      )
+    CODE
+
     assert_equal expected, color.to_s("ThemeColor")
 
     # Grayscale
