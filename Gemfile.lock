@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stylegen (0.3.0)
+    stylegen (0.3.1)
       dry-inflector (~> 0.2.0)
       gli (~> 2.1)
       json_schemer (~> 0.2.0)
@@ -13,7 +13,7 @@ GEM
     dry-inflector (0.2.0)
     ecma-re-validator (0.3.0)
       regexp_parser (~> 2.0)
-    gli (2.20.0)
+    gli (2.20.1)
     hana (1.3.7)
     json_schemer (0.2.18)
       ecma-re-validator (~> 0.3)
