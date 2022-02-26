@@ -46,9 +46,13 @@ module Stylegen
       "#{system_name}Color"
     end
 
-    def colors
-      @colors ||= @data["colors"].map do |key, value|
-        [inflector.camelize_lower(key), generate_color(value)]
+    def color_entries
+      @color_entries ||= @data["colors"].map do |key, value|
+        {
+          property: inflector.camelize_lower(key),
+          description: value["description"],
+          color: generate_color(value)
+        }
       end
     end
 
