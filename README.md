@@ -68,6 +68,7 @@ colors:
       alpha: 0.6
 
   primary_background:
+    description: The color for the main background of your interface.
     light: "#FFFFFF"
     dark:
       # Value for base (non-elevated) level
