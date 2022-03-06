@@ -10,8 +10,7 @@ module Stylegen
     end
 
     def generate
-      template_content = File.read(File.join(__dir__, "resources/template.swift.erb"))
-      template = Template.new(template_content, @data)
+      template = Template.new(@data)
 
       file = File.open(@data.output_path, "w")
       file << template.render
@@ -19,7 +18,7 @@ module Stylegen
     end
 
     def stats
-      @stats ||= { output_path: @data.output_path, color_count: @data.colors.count }
+      @stats ||= { output_path: @data.output_path, color_count: @data.color_entries.count }
     end
   end
 end

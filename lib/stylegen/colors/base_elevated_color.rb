@@ -2,6 +2,8 @@
 
 module Stylegen
   class BaseElevatedColor
+    attr_reader :description
+
     def initialize(base, elevated)
       @base, @elevated = base, elevated
     end

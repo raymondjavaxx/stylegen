@@ -26,6 +26,9 @@
     "Color": {
       "type": "object",
       "properties": {
+        "description": {
+          "type": "string"
+        },
         "color": {
           "$ref": "#/definitions/HexColor"
         },
@@ -41,6 +44,9 @@
     "BaseElevatedColor": {
       "type": "object",
       "properties": {
+        "description": {
+          "type": "string"
+        },
         "base": {
           "$ref": "#/definitions/AbstractColor"
         },
@@ -54,6 +60,9 @@
     "LightDarkColor": {
       "type": "object",
       "properties": {
+        "description": {
+          "type": "string"
+        },
         "light": {
           "$ref": "#/definitions/AbstractColor"
         },
