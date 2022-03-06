@@ -32,7 +32,7 @@ module Stylegen
     end
 
     def render_imports
-      result  = []
+      result = []
       result << "import UIKit"
       result << "import SwiftUI" if data.swiftui?
       result << ""
@@ -41,53 +41,53 @@ module Stylegen
 
     def render_struct
       <<~HEREDOC
-        #{data.access_level} struct #{data.struct_name } {
+        #{data.access_level} struct #{data.struct_name} {
 
-          let uiColor: UIColor
+            let uiColor: UIColor
 
-          fileprivate init(white: CGFloat, alpha: CGFloat) {
-              self.uiColor = UIColor(white: white, alpha: alpha)
-          }
+            fileprivate init(white: CGFloat, alpha: CGFloat) {
+                self.uiColor = UIColor(white: white, alpha: alpha)
+            }
 
-          fileprivate init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-              self.uiColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
-          }
+            fileprivate init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+                self.uiColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+            }
 
-          fileprivate init(_ color: UIColor) {
-              self.uiColor = color
-          }
+            fileprivate init(_ color: UIColor) {
+                self.uiColor = color
+            }
 
-          fileprivate init(light: #{data.struct_name}, dark: #{data.struct_name}) {
-              if #available(iOS 13.0, *) {
-                  self.uiColor = UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
-                      switch traits.userInterfaceStyle {
-                      case .dark:
-                          return dark.uiColor
-                      default:
-                          return light.uiColor
-                      }
-                  })
-              } else {
-                  self.uiColor = light.uiColor
-              }
-          }
+            fileprivate init(light: #{data.struct_name}, dark: #{data.struct_name}) {
+                if #available(iOS 13.0, *) {
+                    self.uiColor = UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
+                        switch traits.userInterfaceStyle {
+                        case .dark:
+                            return dark.uiColor
+                        default:
+                            return light.uiColor
+                        }
+                    })
+                } else {
+                    self.uiColor = light.uiColor
+                }
+            }
 
-          fileprivate init(base: #{data.struct_name}, elevated: #{data.struct_name}) {
-              if #available(iOS 13.0, *) {
-                  self.uiColor = UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
-                      switch traits.userInterfaceLevel {
-                      case .elevated:
-                          return elevated.uiColor
-                      default:
-                          return base.uiColor
-                      }
-                  })
-              } else {
-                  self.uiColor = base.uiColor
-              }
-          }
+            fileprivate init(base: #{data.struct_name}, elevated: #{data.struct_name}) {
+                if #available(iOS 13.0, *) {
+                    self.uiColor = UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
+                        switch traits.userInterfaceLevel {
+                        case .elevated:
+                            return elevated.uiColor
+                        default:
+                            return base.uiColor
+                        }
+                    })
+                } else {
+                    self.uiColor = base.uiColor
+                }
+            }
 
-      }
+        }
       HEREDOC
     end
 
