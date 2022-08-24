@@ -4,8 +4,13 @@ module Stylegen
   class Color
     attr_reader :red, :green, :blue, :alpha
 
-    def initialize(r, g, b, a)
-      @red, @green, @blue, @alpha = r, g, b, a
+    MAX_PRECISION = 16
+
+    def initialize(red, green, blue, alpha)
+      @red = red
+      @green = green
+      @blue = blue
+      @alpha = alpha
     end
 
     def self.from_hex(hex, alpha = nil)
@@ -21,9 +26,12 @@ module Stylegen
         raise ArgumentError, "Invalid color syntax: #{hex}"
       end
 
-      max_precision = 16
-
-      Color.new(r.round(max_precision), g.round(max_precision), b.round(max_precision), alpha || 1.0)
+      Color.new(
+        r.round(MAX_PRECISION),
+        g.round(MAX_PRECISION),
+        b.round(MAX_PRECISION),
+        alpha || 1.0
+      )
     end
 
     def grayscale?
@@ -34,7 +42,7 @@ module Stylegen
       if grayscale?
         "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
       else
-        indent_prefix = " " * indent
+        indent_prefix = ' ' * indent
 
         result = []
         result << "#{struct_name}("

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "stylegen/data"
-require "stylegen/template"
+require 'stylegen/data'
+require 'stylegen/template'
 
 module Stylegen
   class Generator
@@ -12,7 +12,7 @@ module Stylegen
     def generate
       template = Template.new(@data)
 
-      file = File.open(@data.output_path, "w")
+      file = File.open(@data.output_path, 'w')
       file << template.render
       file.close
     end

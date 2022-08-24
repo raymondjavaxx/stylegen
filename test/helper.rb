@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-gem "minitest"
+gem 'minitest'
 
-require "minitest/pride"
-require "minitest/autorun"
+require 'minitest/pride'
+require 'minitest/autorun'
 
-require_relative "../lib/stylegen"
+require_relative '../lib/stylegen'

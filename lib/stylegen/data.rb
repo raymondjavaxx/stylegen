@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "dry/inflector"
-require "stylegen/version"
-require "stylegen/colors"
+require 'dry/inflector'
+require 'stylegen/version'
+require 'stylegen/colors'
 
 module Stylegen
   class Data
@@ -15,7 +15,7 @@ module Stylegen
     end
 
     def file_header
-      header = @data["header"] || <<~HEADER
+      header = @data['header'] || <<~HEADER
         //
         //  {{STYLEGEN_FILENAME}}
         //
@@ -25,12 +25,12 @@ module Stylegen
       HEADER
 
       replacements = {
-        "STYLEGEN_FILENAME" => basename,
-        "STYLEGEN_VERSION" => version,
-        "STYLEGEN_YEAR" => Date.today.year
+        'STYLEGEN_FILENAME' => basename,
+        'STYLEGEN_VERSION' => version,
+        'STYLEGEN_YEAR' => Date.today.year
       }
 
-      header.strip.gsub(/{{(\w+)}}/) { replacements[Regexp.last_match(1)] || "" }
+      header.strip.gsub(/{{(\w+)}}/) { replacements[Regexp.last_match(1)] || '' }
     end
 
     def version
@@ -38,7 +38,7 @@ module Stylegen
     end
 
     def system_name
-      @data["system_name"] || "Theme"
+      @data['system_name'] || 'Theme'
     end
 
     def util_method_name
@@ -46,19 +46,19 @@ module Stylegen
     end
 
     def output_path
-      @data["output_path"]
+      @data['output_path']
     end
 
     def swiftui?
-      @data["swiftui"] || false
+      @data['swiftui'] || false
     end
 
     def basename
-      File.basename(@data["output_path"])
+      File.basename(@data['output_path'])
     end
 
     def access_level
-      @data["access_level"] || "internal"
+      @data['access_level'] || 'internal'
     end
 
     def struct_name
@@ -66,10 +66,10 @@ module Stylegen
     end
 
     def color_entries
-      @color_entries ||= @data["colors"].map do |key, value|
+      @color_entries ||= @data['colors'].map do |key, value|
         {
           property: inflector.camelize_lower(key),
-          description: value["description"],
+          description: value['description'],
           color: generate_color(value)
         }
       end
@@ -80,17 +80,17 @@ module Stylegen
     def generate_color(data)
       if data.is_a?(String)
         Color.from_hex(data)
-      elsif data.key?("color")
-        Color.from_hex(data["color"], data["alpha"])
-      elsif data.key?("light")
+      elsif data.key?('color')
+        Color.from_hex(data['color'], data['alpha'])
+      elsif data.key?('light')
         LightDarkColor.new(
-          generate_color(data["light"]),
-          generate_color(data["dark"])
+          generate_color(data['light']),
+          generate_color(data['dark'])
         )
-      elsif data.key?("base")
+      elsif data.key?('base')
         BaseElevatedColor.new(
-          generate_color(data["base"]),
-          generate_color(data["elevated"])
+          generate_color(data['base']),
+          generate_color(data['elevated'])
         )
       end
     end
