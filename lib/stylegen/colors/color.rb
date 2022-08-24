@@ -6,11 +6,11 @@ module Stylegen
 
     MAX_PRECISION = 16
 
-    def initialize(r, g, b, a)
-      @red = r
-      @green = g
-      @blue = b
-      @alpha = a
+    def initialize(red, green, blue, alpha)
+      @red = red
+      @green = green
+      @blue = blue
+      @alpha = alpha
     end
 
     def self.from_hex(hex, alpha = nil)
@@ -26,7 +26,12 @@ module Stylegen
         raise ArgumentError, "Invalid color syntax: #{hex}"
       end
 
-      Color.new(r.round(MAX_PRECISION), g.round(MAX_PRECISION), b.round(MAX_PRECISION), alpha || 1.0)
+      Color.new(
+        r.round(MAX_PRECISION),
+        g.round(MAX_PRECISION),
+        b.round(MAX_PRECISION),
+        alpha || 1.0
+      )
     end
 
     def grayscale?
