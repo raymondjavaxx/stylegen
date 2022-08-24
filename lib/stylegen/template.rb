@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Stylegen
+  # rubocop:disable Metrics/ClassLength
   class Template
     attr_reader :data
 
@@ -26,9 +27,9 @@ module Stylegen
 
     def render_imports
       result = []
-      result << "import UIKit"
-      result << "import SwiftUI" if data.swiftui?
-      result << ""
+      result << 'import UIKit'
+      result << 'import SwiftUI' if data.swiftui?
+      result << ''
       result.join("\n")
     end
 
@@ -86,10 +87,10 @@ module Stylegen
 
     def render_colors
       result = []
-      result << "// MARK: Colors"
-      result << ""
+      result << '// MARK: Colors'
+      result << ''
       result << "#{data.access_level} extension #{data.struct_name} {"
-      result << ""
+      result << ''
 
       data.color_entries.each do |entry|
         unless entry[:description].nil?
@@ -101,15 +102,15 @@ module Stylegen
         result << "    static let #{entry[:property]} = #{entry[:color].to_s(data.struct_name, 4)}\n"
       end
 
-      result << "}"
-      result << ""
+      result << '}'
+      result << ''
       result.join("\n")
     end
 
     def render_utils
       result = []
-      result << "// MARK: Utils"
-      result << ""
+      result << '// MARK: Utils'
+      result << ''
 
       if data.swiftui?
         result << <<~HEREDOC
@@ -147,4 +148,5 @@ module Stylegen
       result.join("\n")
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end

@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require "yaml"
-require "gli"
+require 'yaml'
+require 'gli'
 
-require "stylegen/validator"
-require "stylegen/generator"
+require 'stylegen/validator'
+require 'stylegen/generator'
 
 module Stylegen
   module CLI
     class App
       extend GLI::App
 
-      program_desc "CLI tool for managing colors in iOS apps"
+      program_desc 'CLI tool for managing colors in iOS apps'
 
       version Stylegen::VERSION
 
@@ -19,30 +19,30 @@ module Stylegen
 
       # Commands
 
-      desc "Generates a sample theme.yaml file in the current directory"
+      desc 'Generates a sample theme.yaml file in the current directory'
       command :init do |c|
         c.action do
-          exit_now!("'theme.yaml' already exists!") if File.exist?("theme.yaml")
+          exit_now!("'theme.yaml' already exists!") if File.exist?('theme.yaml')
 
-          template = File.read(File.join(__dir__, "template.yaml"))
-          File.write("theme.yaml", template)
+          template = File.read(File.join(__dir__, 'template.yaml'))
+          File.write('theme.yaml', template)
 
           puts "Generated 'theme.yaml'."
         end
       end
 
-      desc "Generates the Swift colors file"
+      desc 'Generates the Swift colors file'
       command :build do |c|
         c.action do
-          exit_now!("'theme.yaml' not found. Create one with 'stylegen init'.") unless File.exist?("theme.yaml")
+          exit_now!("'theme.yaml' not found. Create one with 'stylegen init'.") unless File.exist?('theme.yaml')
 
-          data = File.open("theme.yaml") { |file| YAML.safe_load(file) }
+          data = File.open('theme.yaml') { |file| YAML.safe_load(file) }
 
           validator = Validator.new
 
           unless validator.valid?(data)
             message = []
-            message << "theme.yaml contains one or more errors:"
+            message << 'theme.yaml contains one or more errors:'
 
             validator.validate(data).each do |e|
               message << "  #{e}"

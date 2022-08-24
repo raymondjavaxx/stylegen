@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "json_schemer"
+require 'json_schemer'
 
 module Stylegen
   class Validator
@@ -12,7 +12,7 @@ module Stylegen
       errors = []
 
       schema.validate(config).each do |v|
-        errors << JSONSchemer::Errors.pretty(v) unless v["type"] == "schema"
+        errors << JSONSchemer::Errors.pretty(v) unless v['type'] == 'schema'
       end
 
       errors
@@ -21,7 +21,7 @@ module Stylegen
     private
 
     def schema
-      @schema ||= JSONSchemer.schema(File.read(File.join(__dir__, "resources/schema.json")))
+      @schema ||= JSONSchemer.schema(File.read(File.join(__dir__, 'resources/schema.json')))
     end
   end
 end

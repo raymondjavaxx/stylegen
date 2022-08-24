@@ -3,11 +3,12 @@
 module Stylegen
   class LightDarkColor
     def initialize(light, dark)
-      @light, @dark = light, dark
+      @light = light
+      @dark = dark
     end
 
     def to_s(struct_name, indent = 0)
-      indent_prefix = " " * indent
+      indent_prefix = ' ' * indent
 
       result = []
       result << "#{struct_name}("

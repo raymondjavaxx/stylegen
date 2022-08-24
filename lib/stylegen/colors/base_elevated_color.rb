@@ -5,11 +5,12 @@ module Stylegen
     attr_reader :description
 
     def initialize(base, elevated)
-      @base, @elevated = base, elevated
+      @base = base
+      @elevated = elevated
     end
 
     def to_s(struct_name, indent = 0)
-      indent_prefix = " " * indent
+      indent_prefix = ' ' * indent
 
       result = []
       result << "#{struct_name}("

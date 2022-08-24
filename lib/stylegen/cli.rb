@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-require "stylegen/cli/app"
+require 'stylegen/cli/app'
