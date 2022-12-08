@@ -37,10 +37,10 @@ module Stylegen
       <<~HEREDOC
         #{data.access_level} final class #{data.struct_name} {
 
-            let uiColor: UIColor
+            let rawValue: UIColor
 
-            private init(_ uiColor: UIColor) {
-                self.uiColor = uiColor
+            private init(_ rawValue: UIColor) {
+                self.rawValue = rawValue
             }
 
             private convenience init(white: CGFloat, alpha: CGFloat) {
@@ -61,14 +61,14 @@ module Stylegen
                         UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
                             switch traits.userInterfaceStyle {
                             case .dark:
-                                return dark.uiColor
+                                return dark.rawValue
                             default:
-                                return light.uiColor
+                                return light.rawValue
                             }
                         })
                     )
                 } else {
-                    self.init(light.uiColor)
+                    self.init(light.rawValue)
                 }
             }
 
@@ -78,14 +78,14 @@ module Stylegen
                         UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
                             switch traits.userInterfaceLevel {
                             case .elevated:
-                                return elevated.uiColor
+                                return elevated.rawValue
                             default:
-                                return base.uiColor
+                                return base.rawValue
                             }
                         })
                     )
                 } else {
-                    self.init(base.uiColor)
+                    self.init(base.rawValue)
                 }
             }
 
@@ -126,7 +126,7 @@ module Stylegen
 
               @inline(__always)
               static func #{data.util_method_name}(_ color: #{data.struct_name}) -> Color {
-                  return Color(color.uiColor)
+                  return Color(color.rawValue)
               }
 
           }
@@ -138,7 +138,7 @@ module Stylegen
 
             @inline(__always)
             static func #{data.util_method_name}(_ color: #{data.struct_name}) -> UIColor {
-                return color.uiColor
+                return color.rawValue
             }
 
         }
@@ -147,7 +147,7 @@ module Stylegen
 
             @inline(__always)
             static func #{data.util_method_name}(_ color: #{data.struct_name}) -> CGColor {
-                return color.uiColor.cgColor
+                return color.rawValue.cgColor
             }
 
         }
