@@ -142,7 +142,7 @@ module Stylegen
             }
 
         }
-        HEREDOC
+      HEREDOC
 
       result << <<~HEREDOC.lstrip
         #{data.effective_access_level} extension CGColor {
