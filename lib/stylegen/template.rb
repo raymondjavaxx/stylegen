@@ -34,8 +34,8 @@ module Stylegen
     end
 
     def render_struct
-      <<~HEREDOC
-        #{data.access_level} final class #{data.struct_name} {
+      <<~HEREDOC.lstrip
+        #{data.effective_access_level} final class #{data.struct_name} {
 
             let rawValue: UIColor
 
@@ -97,7 +97,7 @@ module Stylegen
       result = []
       result << '// MARK: Colors'
       result << ''
-      result << "#{data.access_level} extension #{data.struct_name} {"
+      result << "#{data.effective_access_level} extension #{data.struct_name} {".lstrip
       result << ''
 
       data.color_entries.each do |entry|
@@ -121,8 +121,8 @@ module Stylegen
       result << ''
 
       if data.swiftui?
-        result << <<~HEREDOC
-          #{data.access_level} extension Color {
+        result << <<~HEREDOC.lstrip
+          #{data.effective_access_level} extension Color {
 
               @inline(__always)
               static func #{data.util_method_name}(_ color: #{data.struct_name}) -> Color {
@@ -133,8 +133,8 @@ module Stylegen
         HEREDOC
       end
 
-      result << <<~HEREDOC
-        #{data.access_level} extension UIColor {
+      result << <<~HEREDOC.lstrip
+        #{data.effective_access_level} extension UIColor {
 
             @inline(__always)
             static func #{data.util_method_name}(_ color: #{data.struct_name}) -> UIColor {
@@ -142,8 +142,10 @@ module Stylegen
             }
 
         }
+        HEREDOC
 
-        #{data.access_level} extension CGColor {
+      result << <<~HEREDOC.lstrip
+        #{data.effective_access_level} extension CGColor {
 
             @inline(__always)
             static func #{data.util_method_name}(_ color: #{data.struct_name}) -> CGColor {

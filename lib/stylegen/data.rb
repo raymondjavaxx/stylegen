@@ -61,6 +61,10 @@ module Stylegen
       @data['access_level'] || 'internal'
     end
 
+    def effective_access_level
+      access_level == 'internal' ? '' : "#{access_level} "
+    end
+
     def struct_name
       "#{system_name}Color"
     end
