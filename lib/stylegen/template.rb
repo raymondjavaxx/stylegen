@@ -35,49 +35,57 @@ module Stylegen
 
     def render_struct
       <<~HEREDOC
-        #{data.access_level} struct #{data.struct_name} {
+        #{data.access_level} final class #{data.struct_name} {
 
             let uiColor: UIColor
 
-            fileprivate init(white: CGFloat, alpha: CGFloat) {
-                self.uiColor = UIColor(white: white, alpha: alpha)
+            private init(_ uiColor: UIColor) {
+                self.uiColor = uiColor
             }
 
-            fileprivate init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-                self.uiColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+            private convenience init(white: CGFloat, alpha: CGFloat) {
+                self.init(
+                    UIColor(white: white, alpha: alpha)
+                )
             }
 
-            fileprivate init(_ color: UIColor) {
-                self.uiColor = color
+            private convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+                self.init(
+                    UIColor(red: red, green: green, blue: blue, alpha: alpha)
+                )
             }
 
-            fileprivate init(light: #{data.struct_name}, dark: #{data.struct_name}) {
+            private convenience init(light: #{data.struct_name}, dark: #{data.struct_name}) {
                 if #available(iOS 13.0, *) {
-                    self.uiColor = UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
-                        switch traits.userInterfaceStyle {
-                        case .dark:
-                            return dark.uiColor
-                        default:
-                            return light.uiColor
-                        }
-                    })
+                    self.init(
+                        UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
+                            switch traits.userInterfaceStyle {
+                            case .dark:
+                                return dark.uiColor
+                            default:
+                                return light.uiColor
+                            }
+                        })
+                    )
                 } else {
-                    self.uiColor = light.uiColor
+                    self.init(light.uiColor)
                 }
             }
 
-            fileprivate init(base: #{data.struct_name}, elevated: #{data.struct_name}) {
+            private convenience init(base: #{data.struct_name}, elevated: #{data.struct_name}) {
                 if #available(iOS 13.0, *) {
-                    self.uiColor = UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
-                        switch traits.userInterfaceLevel {
-                        case .elevated:
-                            return elevated.uiColor
-                        default:
-                            return base.uiColor
-                        }
-                    })
+                    self.init(
+                        UIColor(dynamicProvider: { (traits: UITraitCollection) -> UIColor in
+                            switch traits.userInterfaceLevel {
+                            case .elevated:
+                                return elevated.uiColor
+                            default:
+                                return base.uiColor
+                            }
+                        })
+                    )
                 } else {
-                    self.uiColor = base.uiColor
+                    self.init(base.uiColor)
                 }
             }
 
