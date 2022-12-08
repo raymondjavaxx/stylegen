@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v0.5.0
+### Changed
+- Switched generated code from `struct` to `class`.
+
 ## v0.4.0
 ### Added
 - Added support for color descriptions.
