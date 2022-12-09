@@ -126,7 +126,11 @@ module Stylegen
 
               @inline(__always)
               static func #{data.util_method_name}(_ color: #{data.struct_name}) -> Color {
-                  return Color(color.rawValue)
+                  if #available(iOS 15.0, *) {
+                      return Color(uiColor: color.rawValue)
+                  } else {
+                      return Color(color.rawValue)
+                  }
               }
 
           }
