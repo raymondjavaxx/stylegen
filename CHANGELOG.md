@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.5.0
 ### Changed
 - Switched generated code from `struct` to `class`.
+- SwiftUI: Use `Color(uiColor:)` initializer when running on iOS 15+.
 
 ## v0.4.0
 ### Added
