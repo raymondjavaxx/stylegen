@@ -18,7 +18,7 @@ module Stylegen
 
       desc 'version', 'Prints Stylegen version'
       def version
-        say "stylegen version ${Stylegen::VERSION}"
+        say "stylegen version #{Stylegen::VERSION}"
       end
 
       desc 'init', 'Generates a sample theme.yaml file in the current directory'
