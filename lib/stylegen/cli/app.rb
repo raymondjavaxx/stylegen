@@ -34,10 +34,12 @@ module Stylegen
       desc 'Generates the Swift colors file'
       command :build do |c|
         c.desc 'Path to the theme.yaml file'
-        c.flag [:input, :i], type: String, default_value: 'theme.yaml'
+        c.flag %i[input i], type: String, default_value: 'theme.yaml'
 
-        c.action do |global_options, options, args|
-          exit_now!("'#{options['input']}' not found. Create one with 'stylegen init'.") unless File.exist?(options['input'])
+        c.action do |_global_options, options, _args|
+          unless File.exist?(options['input'])
+            exit_now!("'#{options['input']}' not found. Create one with 'stylegen init'.")
+          end
 
           data = File.open(options['input']) { |file| YAML.safe_load(file) }
 
