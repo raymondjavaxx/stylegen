@@ -21,28 +21,36 @@ module Stylegen
 
       desc 'Generates a sample theme.yaml file in the current directory'
       command :init do |c|
-        c.action do
-          exit_now!("'theme.yaml' already exists!") if File.exist?('theme.yaml')
+        c.desc 'Output file path'
+        c.flag %i[output o], type: String, default_value: 'theme.yaml'
+
+        c.action do |_global_options, options, _args|
+          exit_now!("'#{options['output']}' already exists!") if File.exist?(options['output'])
 
           template = File.read(File.join(__dir__, 'template.yaml'))
-          File.write('theme.yaml', template)
+          File.write(options['output'], template)
 
-          puts "Generated 'theme.yaml'."
+          puts "Generated '#{options['output']}'."
         end
       end
 
       desc 'Generates the Swift colors file'
       command :build do |c|
-        c.action do
-          exit_now!("'theme.yaml' not found. Create one with 'stylegen init'.") unless File.exist?('theme.yaml')
+        c.desc 'Path to the theme.yaml file'
+        c.flag %i[input i], type: String, default_value: 'theme.yaml'
 
-          data = File.open('theme.yaml') { |file| YAML.safe_load(file) }
+        c.action do |_global_options, options, _args|
+          unless File.exist?(options['input'])
+            exit_now!("'#{options['input']}' not found. Create one with 'stylegen init'.")
+          end
+
+          data = File.open(options['input']) { |file| YAML.safe_load(file) }
 
           validator = Validator.new
 
           unless validator.valid?(data)
             message = []
-            message << 'theme.yaml contains one or more errors:'
+            message << "#{options['input']} contains one or more errors:"
 
             validator.validate(data).each do |e|
               message << "  #{e}"
