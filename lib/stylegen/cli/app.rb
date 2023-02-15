@@ -21,13 +21,16 @@ module Stylegen
 
       desc 'Generates a sample theme.yaml file in the current directory'
       command :init do |c|
-        c.action do
-          exit_now!("'theme.yaml' already exists!") if File.exist?('theme.yaml')
+        c.desc 'Output file path'
+        c.flag %i[output o], type: String, default_value: 'theme.yaml'
+
+        c.action do |_global_options, options, _args|
+          exit_now!("'#{options['output']}' already exists!") if File.exist?(options['output'])
 
           template = File.read(File.join(__dir__, 'template.yaml'))
-          File.write('theme.yaml', template)
+          File.write(options['output'], template)
 
-          puts "Generated 'theme.yaml'."
+          puts "Generated '#{options['output']}'."
         end
       end
 
