@@ -3,4 +3,4 @@
 
 require 'stylegen/cli'
 
-exit Stylegen::CLI::App.run(ARGV)
+Stylegen::CLI::App.start(ARGV)
