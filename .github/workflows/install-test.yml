@@ -1,4 +1,4 @@
-name: CI
+name: Install Tests
 on:
   push:
     branches:
@@ -26,7 +26,11 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Lint
-      run: bundle exec rake rubocop
-    - name: Run tests
-      run: bundle exec rake
+    - name: 'Install'
+      run: bundle exec rake install
+    - name: 'Command: Version'
+      run: bundle exec stylegen version
+    - name: 'Command: Init'
+      run: bundle exec stylegen init
+    - name: 'Command: Build'
+      run: bundle exec stylegen build
