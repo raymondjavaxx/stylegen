@@ -21,6 +21,15 @@ class TestCLI < MiniTest::Test
     end
   end
 
+  def test_init_should_fail_if_file_exists
+    Dir.mktmpdir do |dir|
+      File.write("#{dir}/theme.yaml", File.read('lib/stylegen/cli/template.yaml'))
+      _stdout, stderr, status = Open3.capture3("bin/stylegen init -o #{dir}/theme.yaml")
+      assert_equal(1, status.exitstatus)
+      assert_includes stderr, "'#{dir}/theme.yaml' already exists."
+    end
+  end
+
   def test_build
     Dir.mktmpdir do |dir|
       _stdout, stderr, status = Open3.capture3("bin/stylegen build -i #{dir}/theme.yaml")
@@ -32,6 +41,14 @@ class TestCLI < MiniTest::Test
       stdout, _stderr, status = Open3.capture3("bin/stylegen build -i #{dir}/theme.yaml")
       assert_equal(0, status.exitstatus)
       assert_includes stdout, "Generated 'Colors.swift' with 5 colors."
+    end
+  end
+
+  def test_build_should_fail_if_file_doesnt_exist
+    Dir.mktmpdir do |dir|
+      _stdout, stderr, status = Open3.capture3("bin/stylegen build -i #{dir}/theme.yaml")
+      assert_equal(1, status.exitstatus)
+      assert_includes stderr, "'#{dir}/theme.yaml' not found. Create one with 'stylegen init'."
     end
   end
 end
