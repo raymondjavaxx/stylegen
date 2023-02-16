@@ -3,4 +3,11 @@
 
 require 'stylegen'
 
-Stylegen::CLI::App.start(ARGV)
+begin
+  arguments = ARGV.empty? ? ['build'] : ARGV
+  cli = Dry::CLI.new(Stylegen::CLI::Commands)
+  cli.call(arguments: arguments)
+rescue Stylegen::CLI::Commands::Error => e
+  warn e.message
+  exit 1
+end
