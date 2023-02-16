@@ -9,7 +9,7 @@ require 'stylegen/generator'
 module Stylegen
   module CLI
     class App < Thor
-      default_command :generate
+      default_command :build
       stop_on_unknown_option!
 
       def self.exit_on_failure?
@@ -32,9 +32,9 @@ module Stylegen
         say "Generated '#{options['output']}'."
       end
 
-      desc 'generate', 'Generates the Swift colors file'
+      desc 'build', 'Generates the Swift colors file'
       option :input, aliases: '-i', type: :string, default: 'theme.yaml', desc: 'Path to the theme.yaml file'
-      def generate
+      def build
         unless File.exist?(options['input'])
           raise Error, "'#{options['input']}' not found. Create one with 'stylegen init'."
         end
