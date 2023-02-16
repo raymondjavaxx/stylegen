@@ -30,3 +30,12 @@ jobs:
       run: bundle exec rake rubocop
     - name: Run tests
       run: bundle exec rake
+    # Install test
+    - name: 'Install test: Install'
+      run: bundle exect rake install
+    - name: 'Install test: Version'
+      run: stylegen version
+    - name: 'Install test: Init'
+      run: stylegen init
+    - name: 'Install test: Build'
+      run: stylegen build
