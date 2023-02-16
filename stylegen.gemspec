@@ -10,15 +10,14 @@ Gem::Specification.new do |s|
   s.email = ['raymondjavaxx@gmail.com']
   s.homepage = 'https://github.com/raymondjavaxx/stylegen'
   s.description = s.summary = 'Tool for generating styling code for iOS apps'
-  s.files = `git ls-files`.split("\n")
-  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
+  s.files = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'bin/stylegen', 'lib/**/*.rb', 'lib/**/*.yaml', 'lib/**/*.json']
+  s.executables = ['stylegen']
   s.require_paths = ['lib']
   s.license = 'MIT'
 
   s.add_runtime_dependency 'dry-inflector', '~> 0.2.0'
-  s.add_runtime_dependency 'gli', '~> 2.1'
   s.add_runtime_dependency 'json_schemer', '~> 0.2.0'
+  s.add_runtime_dependency 'thor', '~> 1.2'
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'minitest', '~> 5.14'
@@ -28,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop-rake'
 
   s.required_ruby_version = '>= 2.5.0'
+  s.metadata['rubygems_mfa_required'] = 'true'
 end

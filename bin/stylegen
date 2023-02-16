@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'stylegen/cli'
+require 'stylegen'
 
-exit Stylegen::CLI::App.run(ARGV)
+Stylegen::CLI::App.start(ARGV)

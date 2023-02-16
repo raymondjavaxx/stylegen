@@ -3,8 +3,8 @@ PATH
   specs:
     stylegen (0.5.0)
       dry-inflector (~> 0.2.0)
-      gli (~> 2.1)
       json_schemer (~> 0.2.0)
+      thor (~> 1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -13,7 +13,6 @@ GEM
     dry-inflector (0.2.0)
     ecma-re-validator (0.3.0)
       regexp_parser (~> 2.0)
-    gli (2.21.0)
     hana (1.3.7)
     json_schemer (0.2.24)
       ecma-re-validator (~> 0.3)
@@ -44,6 +43,7 @@ GEM
     rubocop-rake (0.5.1)
       rubocop
     ruby-progressbar (1.11.0)
+    thor (1.2.1)
     unicode-display_width (2.0.0)
     uri_template (0.7.0)
 

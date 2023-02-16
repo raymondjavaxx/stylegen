@@ -1,69 +1,62 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require 'gli'
+require 'thor'
 
 require 'stylegen/validator'
 require 'stylegen/generator'
 
 module Stylegen
   module CLI
-    class App
-      extend GLI::App
-
-      program_desc 'CLI tool for managing colors in iOS apps'
-
-      version Stylegen::VERSION
-
+    class App < Thor
       default_command :build
+      stop_on_unknown_option!
 
-      # Commands
-
-      desc 'Generates a sample theme.yaml file in the current directory'
-      command :init do |c|
-        c.desc 'Output file path'
-        c.flag %i[output o], type: String, default_value: 'theme.yaml'
-
-        c.action do |_global_options, options, _args|
-          exit_now!("'#{options['output']}' already exists!") if File.exist?(options['output'])
-
-          template = File.read(File.join(__dir__, 'template.yaml'))
-          File.write(options['output'], template)
-
-          puts "Generated '#{options['output']}'."
-        end
+      def self.exit_on_failure?
+        true
       end
 
-      desc 'Generates the Swift colors file'
-      command :build do |c|
-        c.desc 'Path to the theme.yaml file'
-        c.flag %i[input i], type: String, default_value: 'theme.yaml'
+      desc 'version', 'Prints Stylegen version'
+      def version
+        say "stylegen version #{Stylegen::VERSION}"
+      end
 
-        c.action do |_global_options, options, _args|
-          unless File.exist?(options['input'])
-            exit_now!("'#{options['input']}' not found. Create one with 'stylegen init'.")
-          end
+      desc 'init', 'Generates a sample theme.yaml file in the current directory'
+      option :output, aliases: '-o', type: :string, default: 'theme.yaml', desc: 'Path to the output file'
+      def init
+        raise Error, "'#{options['output']}' already exists." if File.exist?(options['output'])
 
-          data = File.open(options['input']) { |file| YAML.safe_load(file) }
+        template = File.read(File.join(__dir__, 'template.yaml'))
+        File.write(options['output'], template)
 
-          validator = Validator.new
+        say "Generated '#{options['output']}'."
+      end
 
-          unless validator.valid?(data)
-            message = []
-            message << "#{options['input']} contains one or more errors:"
-
-            validator.validate(data).each do |e|
-              message << "  #{e}"
-            end
-
-            exit_now!(message.join("\n"))
-          end
-
-          generator = Generator.new(data)
-          generator.generate
-
-          puts "Generated '#{generator.stats[:output_path]}' with #{generator.stats[:color_count]} colors."
+      desc 'build', 'Generates the Swift colors file'
+      option :input, aliases: '-i', type: :string, default: 'theme.yaml', desc: 'Path to the theme.yaml file'
+      def build
+        unless File.exist?(options['input'])
+          raise Error, "'#{options['input']}' not found. Create one with 'stylegen init'."
         end
+
+        data = File.open(options['input']) { |file| YAML.safe_load(file) }
+
+        validator = Validator.new
+        unless validator.valid?(data)
+          message = []
+          message << "#{options['input']} contains one or more errors:"
+
+          validator.validate(data).each do |e|
+            message << "  #{e}"
+          end
+
+          exit_now!(message.join("\n"))
+        end
+
+        generator = Generator.new(data)
+        generator.generate
+
+        say "Generated '#{generator.stats[:output_path]}' with #{generator.stats[:color_count]} colors."
       end
     end
   end
