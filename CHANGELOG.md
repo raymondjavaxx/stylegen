@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## vX.Y.Z
+## v0.6.0
 ### Changed
 - Switched from GLI to dry-cli for CLI. Some may produce slightly different STDOUT and STDERR output.
 ### Added
