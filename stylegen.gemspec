@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ['raymondjavaxx@gmail.com']
   s.homepage = 'https://github.com/raymondjavaxx/stylegen'
   s.description = s.summary = 'Tool for generating styling code for iOS apps'
-  s.files = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'bin/stylegen', 'lib/**/*.rb', 'lib/**/*.yaml']
+  s.files = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'bin/stylegen', 'lib/**/*.rb', 'lib/**/*.yaml', 'lib/**/*.json']
   s.executables = ['stylegen']
   s.require_paths = ['lib']
   s.license = 'MIT'
