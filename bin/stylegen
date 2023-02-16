@@ -3,4 +3,9 @@
 
 require 'stylegen'
 
-Stylegen::CLI::App.start(ARGV)
+begin
+  Dry::CLI.new(Stylegen::CLI::Commands).call
+rescue Stylegen::CLI::Commands::Error => e
+  warn e.message
+  exit 1
+end
