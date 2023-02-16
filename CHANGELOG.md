@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## vX.Y.Z
 ### Changed
-- Switched from GLI to Thor for CLI. Some may produce slightly different STDOUT and STDERR output.
+- Switched from GLI to dry-cli for CLI. Some may produce slightly different STDOUT and STDERR output.
 ### Added
 - Added `--output` flag to `stylegen init` command. This allows you to specify a different output file than the default `theme.yaml`.
 - Added `--input` flag to `stylegen build` command. This allows you to specify a different input file than the default `theme.yaml`.
