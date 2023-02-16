@@ -34,8 +34,8 @@ jobs:
     - name: 'Install test: Install'
       run: bundle exec rake install
     - name: 'Install test: Version'
-      run: stylegen version
+      run: bundle exec stylegen version
     - name: 'Install test: Init'
-      run: stylegen init
+      run: bundle exec stylegen init
     - name: 'Install test: Build'
-      run: stylegen build
+      run: bundle exec stylegen build
