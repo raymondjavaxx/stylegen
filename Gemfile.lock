@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     stylegen (0.5.0)
-      dry-cli (~> 1.0.0)
+      dry-cli (~> 0.7.0)
       dry-inflector (~> 0.2.0)
       json_schemer (~> 0.2.0)
 
@@ -10,7 +10,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
-    dry-cli (1.0.0)
+    dry-cli (0.7.0)
     dry-inflector (0.2.0)
     ecma-re-validator (0.3.0)
       regexp_parser (~> 2.0)
