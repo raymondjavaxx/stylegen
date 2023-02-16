@@ -32,7 +32,7 @@ jobs:
       run: bundle exec rake
     # Install test
     - name: 'Install test: Install'
-      run: bundle exect rake install
+      run: bundle exec rake install
     - name: 'Install test: Version'
       run: stylegen version
     - name: 'Install test: Init'
