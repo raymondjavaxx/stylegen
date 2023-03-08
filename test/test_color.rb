@@ -22,7 +22,7 @@ class TestColor < MiniTest::Test
     assert_in_delta(0.5, color.alpha)
   end
 
-  def test_parsing_shorthand_syntax
+  def test_parsing_three_digit_hex
     color = Stylegen::Color.from_hex('#FC0')
     assert_in_delta(1.0, color.red)
     assert_in_delta(0.8000000000000002, color.green)

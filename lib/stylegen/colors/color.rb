@@ -4,6 +4,8 @@ module Stylegen
   class Color
     attr_reader :red, :green, :blue, :alpha
 
+    SIX_DIGIT_HEX_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/.freeze
+    THREE_DIGIT_HEX_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/.freeze
     MAX_PRECISION = 16
 
     def initialize(red, green, blue, alpha)
@@ -14,11 +16,11 @@ module Stylegen
     end
 
     def self.from_hex(hex, alpha = nil)
-      if (match = hex.downcase.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/))
+      if (match = hex.downcase.match(SIX_DIGIT_HEX_REGEX))
         r = Integer(match.captures[0], 16) / 255.0
         g = Integer(match.captures[1], 16) / 255.0
         b = Integer(match.captures[2], 16) / 255.0
-      elsif (match = hex.downcase.match(/^#?([a-f\d])([a-f\d])([a-f\d])$/))
+      elsif (match = hex.downcase.match(THREE_DIGIT_HEX_REGEX))
         r = Integer(match.captures[0] * 2, 16) / 255.0
         g = Integer(match.captures[1] * 2, 16) / 255.0
         b = Integer(match.captures[2] * 2, 16) / 255.0
