@@ -60,7 +60,7 @@ extension BaseColor {
     static let accent = BaseColor(
         red: 0.0,
         green: 0.7490196078431373,
-        blue: 0.7607843137254903,
+        blue: 0.7647058823529411,
         alpha: 1.0
     )
 
