@@ -1,7 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## vNEXT
+## v0.7.0
+### Added
+- Added AppKit support.
 ### Changed
 - Stylegen now requires Ruby 2.7 or higher.
 
