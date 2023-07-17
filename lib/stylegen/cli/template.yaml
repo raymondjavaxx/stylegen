@@ -8,9 +8,9 @@
 output_path: "Colors.swift"
 
 # UI frameworks to support.
-frameworks:
-  - UIKit
-  # - AppKit
+# frameworks:
+#   - UIKit
+#   - AppKit
 
 # Enables SwiftUI support.
 # swiftui: false
