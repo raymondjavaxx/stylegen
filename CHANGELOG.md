@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## vNEXT
+### Changed
+- Dropped support for Ruby 2.5.
+
 ## v0.6.1
 ### Fixed
 - Fixed a bug where an extra space was being added after the access-level modifier in the generated code.
