@@ -221,7 +221,7 @@ module Stylegen
           end
         end
 
-        result << "    static let #{entry[:property]} = #{entry[:color].to_s(data.struct_name, 4)}"
+        result << "    static let #{entry[:property]} = #{entry[:color].to_s(data.struct_name, 4).lstrip}"
         result << '' unless entry == data.color_entries.last
       end
 

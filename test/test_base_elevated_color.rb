@@ -22,12 +22,14 @@ class TestBaseElevatedColor < MiniTest::Test
 
     # Additional indentation
 
-    expected = <<~CODE.chomp
-      ThemeColor(
-              base: ThemeColor(white: 0.0, alpha: 1.0),
-              elevated: ThemeColor(white: 0.2, alpha: 1.0)
-          )
-    CODE
+    expected = Stylegen::Indent.with_level(4) do
+      <<~CODE.chomp
+        ThemeColor(
+            base: ThemeColor(white: 0.0, alpha: 1.0),
+            elevated: ThemeColor(white: 0.2, alpha: 1.0)
+        )
+      CODE
+    end
 
     assert_equal expected, color.to_s('ThemeColor', 4)
   end

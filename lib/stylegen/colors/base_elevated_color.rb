@@ -13,13 +13,13 @@ module Stylegen
 
     def to_s(struct_name, indent = 0)
       Indent.with_level(indent) do
-        <<~SWIFT
+        <<~SWIFT.chomp
           #{struct_name}(
-              base: #{@base.to_s(struct_name, indent + 4)},
-              elevated: #{@elevated.to_s(struct_name, indent + 4)}
+              base: #{@base.to_s(struct_name, 4).lstrip},
+              elevated: #{@elevated.to_s(struct_name, 4).lstrip}
           )
         SWIFT
-      end.strip
+      end
     end
   end
 end

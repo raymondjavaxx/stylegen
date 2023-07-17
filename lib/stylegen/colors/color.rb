@@ -47,7 +47,7 @@ module Stylegen
         if grayscale?
           "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
         else
-          <<~SWIFT
+          <<~SWIFT.chomp
             #{struct_name}(
                 red: #{@red},
                 green: #{@green},
@@ -56,7 +56,7 @@ module Stylegen
             )
           SWIFT
         end
-      end.strip
+      end
     end
   end
 end

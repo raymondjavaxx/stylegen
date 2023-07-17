@@ -22,12 +22,14 @@ class TestLightDarkColor < MiniTest::Test
 
     # Additional indentation
 
-    expected = <<~CODE.chomp
-      ThemeColor(
-              light: ThemeColor(white: 1.0, alpha: 1.0),
-              dark: ThemeColor(white: 0.2, alpha: 1.0)
-          )
-    CODE
+    expected = Stylegen::Indent.with_level(4) do
+      <<~CODE.chomp
+        ThemeColor(
+            light: ThemeColor(white: 1.0, alpha: 1.0),
+            dark: ThemeColor(white: 0.2, alpha: 1.0)
+        )
+      CODE
+    end
 
     assert_equal expected, color.to_s('ThemeColor', 4)
   end
