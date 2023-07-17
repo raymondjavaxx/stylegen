@@ -62,7 +62,7 @@ module Stylegen
     end
 
     def effective_access_level
-      access_level == 'internal' ? '' : "#{access_level} "
+      access_level == 'internal' ? '' : access_level
     end
 
     def struct_name
