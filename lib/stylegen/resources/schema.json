@@ -92,6 +92,17 @@
       "minLength": 1,
       "description": "Path of generated Swift file."
     },
+    "frameworks": {
+      "type": "array",
+      "description": "List of frameworks to import.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "UIKit",
+          "AppKit"
+        ]
+      }
+    },
     "swiftui": {
       "type": "boolean",
       "default": false,
