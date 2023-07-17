@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## vNEXT
 ### Changed
-- Dropped support for Ruby 2.5.
+- Stylegen now requires Ruby 2.7 or higher.
 
 ## v0.6.1
 ### Fixed
