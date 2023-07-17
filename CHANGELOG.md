@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v0.6.1
+### Fixed
+- Fixed a bug where an extra space was being added after the access-level modifier in the generated code.
+
 ## v0.6.0
 ### Changed
 - Switched from GLI to dry-cli for CLI. Some may produce slightly different STDOUT and STDERR output.
