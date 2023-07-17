@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## vNEXT
+### Changed
+- Stylegen now requires Ruby 2.7 or higher.
+
 ## v0.6.1
 ### Fixed
 - Fixed a bug where an extra space was being added after the access-level modifier in the generated code.

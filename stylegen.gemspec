@@ -15,17 +15,10 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.license = 'MIT'
 
-  s.add_runtime_dependency 'dry-cli', '~> 0.7.0'
-  s.add_runtime_dependency 'dry-inflector', '~> 0.2.0'
-  s.add_runtime_dependency 'json_schemer', '~> 0.2.0'
+  s.add_runtime_dependency 'dry-cli', '~> 1.0.0'
+  s.add_runtime_dependency 'dry-inflector', '~> 1.0.0'
+  s.add_runtime_dependency 'json_schemer', '~> 1.0.3'
 
-  s.add_development_dependency 'bundler'
-  s.add_development_dependency 'minitest', '~> 5.14'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'rubocop-minitest'
-  s.add_development_dependency 'rubocop-rake'
-
-  s.required_ruby_version = '>= 2.5.0'
+  s.required_ruby_version = '>= 2.7.0'
   s.metadata['rubygems_mfa_required'] = 'true'
 end
