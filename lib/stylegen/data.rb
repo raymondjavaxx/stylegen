@@ -49,6 +49,22 @@ module Stylegen
       @data['output_path']
     end
 
+    def frameworks
+      @data['frameworks'] || ['UIKit']
+    end
+
+    def supports_uikit?
+      frameworks.include?('UIKit')
+    end
+
+    def supports_appkit?
+      frameworks.include?('AppKit')
+    end
+
+    def multiplatform?
+      supports_uikit? && supports_appkit?
+    end
+
     def swiftui?
       @data['swiftui'] || false
     end
