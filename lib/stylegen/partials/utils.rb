@@ -15,19 +15,7 @@ module Stylegen
         result << ''
 
         if data.swiftui?
-          result << <<~HEREDOC.lstrip
-            #{data.effective_access_level} extension Color {
-                @inline(__always)
-                static func #{data.util_method_name}(_ color: #{data.struct_name}) -> Color {
-                    if #available(iOS 15.0, *) {
-                        return Color(uiColor: color.rawValue)
-                    } else {
-                        return Color(color.rawValue)
-                    }
-                }
-            }
-          HEREDOC
-
+          result << render_color_extension
           result << ''
         end
 
@@ -51,6 +39,42 @@ module Stylegen
       end
 
       private
+
+      def render_color_extension
+        result = []
+        result << '#if canImport(UIKit)' if data.multiplatform?
+        if data.supports_uikit?
+          result << <<~SWIFT.strip
+            #{data.effective_access_level} extension Color {
+                @inline(__always)
+                static func #{data.util_method_name}(_ color: #{data.struct_name}) -> Color {
+                    if #available(iOS 15.0, *) {
+                        return Color(uiColor: color.rawValue)
+                    } else {
+                        return Color(color.rawValue)
+                    }
+                }
+            }
+          SWIFT
+        end
+        result << '#elseif canImport(AppKit)' if data.multiplatform?
+        if data.supports_appkit?
+          result << <<~SWIFT.strip
+            #{data.effective_access_level} extension Color {
+                @inline(__always)
+                static func #{data.util_method_name}(_ color: #{data.struct_name}) -> Color {
+                    if #available(macOS 12.0, *) {
+                        return Color(nsColor: color.rawValue)
+                    } else {
+                        return Color(color.rawValue)
+                    }
+                }
+            }
+          SWIFT
+        end
+        result << '#endif' if data.multiplatform?
+        result.join("\n")
+      end
 
       def render_uicolor_extension
         <<~HEREDOC.strip
