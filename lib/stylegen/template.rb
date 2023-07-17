@@ -234,7 +234,7 @@ module Stylegen
       result = []
       result << '// MARK: Utils'
       result << ''
-  
+
       if data.swiftui?
         result << <<~HEREDOC.lstrip
           #{data.effective_access_level} extension Color {
@@ -252,27 +252,13 @@ module Stylegen
         result << ''
       end
 
-      if data.multiplatform?
-        result << '#if canImport(UIKit)'
-      end
-
-      if data.supports_uikit?
-        result << render_uicolor_extension
-      end
-
-      if data.multiplatform?
-        result << '#elseif canImport(AppKit)'
-      end
-
-      if data.supports_appkit?
-        result << render_nscolor_extension
-      end
-
-      if data.multiplatform?
-        result << '#endif'
-      end
-
+      result << '#if canImport(UIKit)' if data.multiplatform?
+      result << render_uicolor_extension if data.supports_uikit?
+      result << '#elseif canImport(AppKit)' if data.multiplatform?
+      result << render_nscolor_extension if data.supports_appkit?
+      result << '#endif' if data.multiplatform?
       result << ''
+
       result << <<~HEREDOC.lstrip
         #{data.effective_access_level} extension CGColor {
             @inline(__always)
