@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'stylegen/indent'
+
 module Stylegen
   class LightDarkColor
     def initialize(light, dark)
@@ -8,15 +10,14 @@ module Stylegen
     end
 
     def to_s(struct_name, indent = 0)
-      indent_prefix = ' ' * indent
-
-      result = []
-      result << "#{struct_name}("
-      result << "#{indent_prefix}    light: #{@light.to_s(struct_name, indent + 4)},"
-      result << "#{indent_prefix}    dark: #{@dark.to_s(struct_name, indent + 4)}"
-      result << "#{indent_prefix})"
-
-      result.join("\n")
+      Indent.with_level(indent) do
+        <<~SWIFT
+          #{struct_name}(
+              light: #{@light.to_s(struct_name, indent + 4)},
+              dark: #{@dark.to_s(struct_name, indent + 4)}
+          )
+        SWIFT
+      end.strip
     end
   end
 end

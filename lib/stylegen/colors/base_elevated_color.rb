@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'stylegen/indent'
+
 module Stylegen
   class BaseElevatedColor
     attr_reader :description
@@ -10,15 +12,14 @@ module Stylegen
     end
 
     def to_s(struct_name, indent = 0)
-      indent_prefix = ' ' * indent
-
-      result = []
-      result << "#{struct_name}("
-      result << "#{indent_prefix}    base: #{@base.to_s(struct_name, indent + 4)},"
-      result << "#{indent_prefix}    elevated: #{@elevated.to_s(struct_name, indent + 4)}"
-      result << "#{indent_prefix})"
-
-      result.join("\n")
+      Indent.with_level(indent) do
+        <<~SWIFT
+          #{struct_name}(
+              base: #{@base.to_s(struct_name, indent + 4)},
+              elevated: #{@elevated.to_s(struct_name, indent + 4)}
+          )
+        SWIFT
+      end.strip
     end
   end
 end
