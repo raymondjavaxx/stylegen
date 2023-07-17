@@ -2,9 +2,10 @@
 
 module Stylegen
   class Indent
-    def initialize(level)
+    def initialize(level, string = nil)
       @level = level
       @data = []
+      @data << string unless string.nil?
     end
 
     def <<(string)

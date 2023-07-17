@@ -48,70 +48,48 @@ module Stylegen
     end
 
     def render_struct
+      <<~HEREDOC.lstrip
+        #{data.effective_access_level} final class #{data.struct_name} {
+        #{Indent.new(4, render_native_color_alias)}
+
+            fileprivate let rawValue: NativeColor
+
+            private init(_ rawValue: NativeColor) {
+                self.rawValue = rawValue
+            }
+
+            private convenience init(white: CGFloat, alpha: CGFloat) {
+                self.init(
+                    NativeColor(white: white, alpha: alpha)
+                )
+            }
+
+            private convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+                self.init(
+                    NativeColor(red: red, green: green, blue: blue, alpha: alpha)
+                )
+            }
+
+        #{Indent.new(4, render_platform_specific_initializers)}
+        }
+      HEREDOC
+    end
+
+    def render_native_color_alias
       result = []
-
-      result << "#{data.effective_access_level} class #{data.struct_name} {".lstrip
-
-      if data.multiplatform?
-        result << Indent.with_level(4) do
-          <<~HEREDOC
-            #if canImport(UIKit)
-            typealias NativeColor = UIColor
-            #elseif canImport(AppKit)
-            typealias NativeColor = NSColor
-            #endif
-          HEREDOC
-        end
-      elsif data.supports_uikit?
-        result << Indent.with_level(4) do
-          <<~HEREDOC
-            typealias NativeColor = UIColor
-          HEREDOC
-        end
-      elsif data.supports_appkit?
-        result << Indent.with_level(4) do
-          <<~HEREDOC
-            typealias NativeColor = NSColor
-          HEREDOC
-        end
-      end
-
-      result << Indent.with_level(4) do
-        <<~HEREDOC.strip
-          let rawValue: NativeColor
-
-          private init(_ rawValue: NativeColor) {
-              self.rawValue = rawValue
-          }
-
-          private convenience init(white: CGFloat, alpha: CGFloat) {
-              self.init(
-                  NativeColor(white: white, alpha: alpha)
-              )
-          }
-
-          private convenience init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-              self.init(
-                  NativeColor(red: red, green: green, blue: blue, alpha: alpha)
-              )
-          }
-
-          #{render_platform_specific_initializers}
-        HEREDOC
-      end
-
-      result << '}'
-      result << ''
-
+      result << '#if canImport(UIKit)' if data.multiplatform?
+      result << 'typealias NativeColor = UIColor' if data.supports_uikit?
+      result << '#elseif canImport(AppKit)' if data.multiplatform?
+      result << 'typealias NativeColor = NSColor' if data.supports_appkit?
+      result << '#endif' if data.multiplatform?
       result.join("\n")
     end
 
     def render_platform_specific_initializers
-      <<~HEREDOC.strip
-        #{render_light_dark_initializer}
-
-        #{render_base_elevated_initializer}
-      HEREDOC
+      result = []
+      result << render_light_dark_initializer
+      result << render_base_elevated_initializer
+      result.join("\n\n")
     end
 
     def render_light_dark_initializer
@@ -235,7 +213,6 @@ module Stylegen
       result << '// MARK: Colors'
       result << ''
       result << "#{data.effective_access_level} extension #{data.struct_name} {".lstrip
-      result << ''
 
       data.color_entries.each do |entry|
         unless entry[:description].nil?
@@ -244,7 +221,8 @@ module Stylegen
           end
         end
 
-        result << "    static let #{entry[:property]} = #{entry[:color].to_s(data.struct_name, 4)}\n"
+        result << "    static let #{entry[:property]} = #{entry[:color].to_s(data.struct_name, 4)}"
+        result << '' unless entry == data.color_entries.last
       end
 
       result << '}'
@@ -255,7 +233,8 @@ module Stylegen
     def render_utils
       result = []
       result << '// MARK: Utils'
-
+      result << ''
+  
       if data.swiftui?
         result << <<~HEREDOC.lstrip
           #{data.effective_access_level} extension Color {
@@ -269,23 +248,32 @@ module Stylegen
               }
           }
         HEREDOC
+
+        result << ''
       end
 
       if data.multiplatform?
-        result << <<~HEREDOC.strip
-          #if canImport(UIKit)
-          #{render_uicolor_extension}
-          #elseif canImport(AppKit)
-          #{render_nscolor_extension}
-          #endif
-        HEREDOC
-      elsif data.supports_uikit?
+        result << '#if canImport(UIKit)'
+      end
+
+      if data.supports_uikit?
         result << render_uicolor_extension
-      elsif data.supports_appkit?
+      end
+
+      if data.multiplatform?
+        result << '#elseif canImport(AppKit)'
+      end
+
+      if data.supports_appkit?
         result << render_nscolor_extension
       end
 
-      result << <<~HEREDOC
+      if data.multiplatform?
+        result << '#endif'
+      end
+
+      result << ''
+      result << <<~HEREDOC.lstrip
         #{data.effective_access_level} extension CGColor {
             @inline(__always)
             static func #{data.util_method_name}(_ color: #{data.struct_name}) -> CGColor {
@@ -294,7 +282,7 @@ module Stylegen
         }
       HEREDOC
 
-      result.join("\n\n")
+      result.join("\n")
     end
 
     def render_uicolor_extension
