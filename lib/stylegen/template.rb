@@ -121,7 +121,7 @@ module Stylegen
 
       if data.multiplatform?
         result << Indent.with_level(4) do
-          "#if canImport(UIKit)"
+          '#if canImport(UIKit)'
         end
       end
 
@@ -144,7 +144,7 @@ module Stylegen
 
       if data.multiplatform?
         result << Indent.with_level(4) do
-          "#elseif canImport(AppKit)"
+          '#elseif canImport(AppKit)'
         end
       end
 
@@ -170,11 +170,11 @@ module Stylegen
 
       if data.multiplatform?
         result << Indent.with_level(4) do
-          "#endif"
+          '#endif'
         end
       end
-    
-      result << "}"
+
+      result << '}'
       result.join("\n")
     end
 
@@ -184,7 +184,7 @@ module Stylegen
       result << "private convenience init(base: #{data.struct_name}, elevated: #{data.struct_name}) {"
       if data.multiplatform?
         result << Indent.with_level(4) do
-          "#if canImport(UIKit)"
+          '#if canImport(UIKit)'
         end
       end
 
@@ -207,7 +207,7 @@ module Stylegen
 
       if data.multiplatform?
         result << Indent.with_level(4) do
-          "#elseif canImport(AppKit)"
+          '#elseif canImport(AppKit)'
         end
       end
 
@@ -222,11 +222,11 @@ module Stylegen
 
       if data.multiplatform?
         result << Indent.with_level(4) do
-          "#endif"
+          '#endif'
         end
       end
 
-      result << "}"
+      result << '}'
       result.join("\n")
     end
 
