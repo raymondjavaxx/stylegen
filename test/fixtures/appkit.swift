@@ -8,7 +8,7 @@ import AppKit
 import SwiftUI
 
 final class BaseColor {
-    typealias NativeColor = NSColor
+    fileprivate typealias NativeColor = NSColor
 
     fileprivate let rawValue: NativeColor
 

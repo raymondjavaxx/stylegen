@@ -7,7 +7,7 @@
 import UIKit
 
 final class BaseColor {
-    typealias NativeColor = UIColor
+    fileprivate typealias NativeColor = UIColor
 
     fileprivate let rawValue: NativeColor
 

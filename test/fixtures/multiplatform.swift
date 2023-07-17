@@ -13,9 +13,9 @@ import SwiftUI
 
 final class BaseColor {
     #if canImport(UIKit)
-    typealias NativeColor = UIColor
+    fileprivate typealias NativeColor = UIColor
     #elseif canImport(AppKit)
-    typealias NativeColor = NSColor
+    fileprivate typealias NativeColor = NSColor
     #endif
 
     fileprivate let rawValue: NativeColor

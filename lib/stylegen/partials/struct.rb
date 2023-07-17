@@ -43,9 +43,9 @@ module Stylegen
       def render_native_color_alias
         result = []
         result << '#if canImport(UIKit)' if data.multiplatform?
-        result << 'typealias NativeColor = UIColor' if data.supports_uikit?
+        result << 'fileprivate typealias NativeColor = UIColor' if data.supports_uikit?
         result << '#elseif canImport(AppKit)' if data.multiplatform?
-        result << 'typealias NativeColor = NSColor' if data.supports_appkit?
+        result << 'fileprivate typealias NativeColor = NSColor' if data.supports_appkit?
         result << '#endif' if data.multiplatform?
         result.join("\n")
       end
