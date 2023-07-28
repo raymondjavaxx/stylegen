@@ -26,14 +26,14 @@ module Stylegen
         result << '#endif' if data.multiplatform?
         result << ''
 
-        result << <<~HEREDOC.lstrip
+        result << <<~SWIFT.lstrip
           #{data.effective_access_level} extension CGColor {
               @inline(__always)
               static func #{data.util_method_name}(_ color: #{data.struct_name}) -> CGColor {
                   return color.rawValue.cgColor
               }
           }
-        HEREDOC
+        SWIFT
 
         result.join("\n")
       end
@@ -77,25 +77,25 @@ module Stylegen
       end
 
       def render_uicolor_extension
-        <<~HEREDOC.strip
+        <<~SWIFT.strip
           #{data.effective_access_level} extension UIColor {
               @inline(__always)
               static func #{data.util_method_name}(_ color: #{data.struct_name}) -> UIColor {
                   return color.rawValue
               }
           }
-        HEREDOC
+        SWIFT
       end
 
       def render_nscolor_extension
-        <<~HEREDOC.strip
+        <<~SWIFT.strip
           #{data.effective_access_level} extension NSColor {
               @inline(__always)
               static func #{data.util_method_name}(_ color: #{data.struct_name}) -> NSColor {
                   return color.rawValue
               }
           }
-        HEREDOC
+        SWIFT
       end
     end
   end

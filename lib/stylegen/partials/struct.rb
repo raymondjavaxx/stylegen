@@ -11,7 +11,7 @@ module Stylegen
       end
 
       def to_s
-        <<~HEREDOC.lstrip
+        <<~SWIFT.lstrip
           #{data.effective_access_level} final class #{data.struct_name} {
           #{Indent.new(4, render_native_color_alias)}
 
@@ -35,7 +35,7 @@ module Stylegen
 
           #{Indent.new(4, render_platform_specific_initializers)}
           }
-        HEREDOC
+        SWIFT
       end
 
       private
@@ -70,7 +70,7 @@ module Stylegen
 
         if data.supports_uikit?
           result << Indent.with_level(4) do
-            <<~HEREDOC.strip
+            <<~SWIFT.strip
               self.init(
                   NativeColor(dynamicProvider: { traits in
                       switch traits.userInterfaceStyle {
@@ -81,7 +81,7 @@ module Stylegen
                       }
                   })
               )
-            HEREDOC
+            SWIFT
           end
         end
 
@@ -93,7 +93,7 @@ module Stylegen
 
         if data.supports_appkit?
           result << Indent.with_level(4) do
-            <<~HEREDOC.strip
+            <<~SWIFT.strip
               self.init(
                 NativeColor(name: nil, dynamicProvider: { appearance in
                     switch appearance.name {
@@ -107,7 +107,7 @@ module Stylegen
                     }
                 })
               )
-            HEREDOC
+            SWIFT
           end
         end
 
@@ -133,7 +133,7 @@ module Stylegen
 
         if data.supports_uikit?
           result << Indent.with_level(4) do
-            <<~HEREDOC.strip
+            <<~SWIFT.strip
               self.init(
                   NativeColor(dynamicProvider: { traits in
                       switch traits.userInterfaceLevel {
@@ -144,7 +144,7 @@ module Stylegen
                       }
                   })
               )
-            HEREDOC
+            SWIFT
           end
         end
 
@@ -156,10 +156,10 @@ module Stylegen
 
         if data.supports_appkit?
           result << Indent.with_level(4) do
-            <<~HEREDOC.strip
+            <<~SWIFT.strip
               // macOS doesn't have elevated colors
               self.init(base.rawValue)
-            HEREDOC
+            SWIFT
           end
         end
 
