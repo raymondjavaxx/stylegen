@@ -1,6 +1,6 @@
 # stylegen
 
-A CLI utility that allows managing the colors used in an iOS app from a centralized YAML file in a type-safe way.
+A CLI utility for managing the colors used in an iOS/macOS app from a centralized YAML file in a type-safe way.
 
 ![CI](https://github.com/raymondjavaxx/stylegen/workflows/CI/badge.svg?branch=master)
 
@@ -38,7 +38,12 @@ The generated YAML file will look similar to this:
 # Path of generated Swift file.
 output_path: "Colors.swift"
 
-# Enables SwiftUI support
+# UI frameworks to support.
+# frameworks:
+#   - UIKit
+#   - AppKit
+
+# Enables SwiftUI support.
 # swiftui: false
 
 # Key-value pairs of theme colors.
@@ -100,10 +105,3 @@ self.backgroundColor = .theme(.accent)
 
 The `.theme()` static method serves as a namespace to easily distinguish between UIKit's built-in colors and our custom
 colors. The name of the namespacing function gets inferred from the `system_name` property in the YAML file.
-
-## TODO
-
-* ~~`$ stylegen init` command~~
-* Option to specify target frameworks: AppKit, UIKit, Core Graphics, and SwiftUI
-* ~~SwiftUI support~~
-* AppKit support

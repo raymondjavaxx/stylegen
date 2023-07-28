@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'stylegen/indent'
+
 module Stylegen
   class Color
     attr_reader :red, :green, :blue, :alpha
@@ -41,20 +43,19 @@ module Stylegen
     end
 
     def to_s(struct_name, indent = 0)
-      if grayscale?
-        "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
-      else
-        indent_prefix = ' ' * indent
-
-        result = []
-        result << "#{struct_name}("
-        result << "#{indent_prefix}    red: #{@red},"
-        result << "#{indent_prefix}    green: #{@green},"
-        result << "#{indent_prefix}    blue: #{@blue},"
-        result << "#{indent_prefix}    alpha: #{@alpha}"
-        result << "#{indent_prefix})"
-
-        result.join("\n")
+      Indent.with_level(indent) do
+        if grayscale?
+          "#{struct_name}(white: #{@red}, alpha: #{@alpha})"
+        else
+          <<~SWIFT.chomp
+            #{struct_name}(
+                red: #{@red},
+                green: #{@green},
+                blue: #{@blue},
+                alpha: #{@alpha}
+            )
+          SWIFT
+        end
       end
     end
   end
