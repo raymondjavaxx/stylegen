@@ -2,7 +2,7 @@
 
 require_relative 'helper'
 
-class TestColor < MiniTest::Test
+class TestColor < Minitest::Test
   def test_parsing
     color = Stylegen::Color.from_hex('#FF8000')
 
@@ -49,7 +49,7 @@ class TestColor < MiniTest::Test
 
     color = Stylegen::Color.new(1, 1, 0.9, 1)
 
-    refute_predicate color, :grayscale?
+    refute_predicate(color, :grayscale?) # skipcq: RB-RL1045
   end
 
   def test_to_string

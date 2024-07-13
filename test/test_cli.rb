@@ -3,7 +3,7 @@
 require 'open3'
 require_relative 'helper'
 
-class TestCLI < MiniTest::Test
+class TestCLI < Minitest::Test
   def test_version
     stdout, _stderr, status = Open3.capture3('bin/stylegen version')
 

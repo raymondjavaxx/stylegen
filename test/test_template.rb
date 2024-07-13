@@ -3,7 +3,7 @@
 require 'yaml'
 require_relative 'helper'
 
-class TestTemplate < MiniTest::Test
+class TestTemplate < Minitest::Test
   def test_render_appkit
     yaml_path = File.join(__dir__, 'fixtures', 'appkit.yaml')
     swift_path = File.join(__dir__, 'fixtures', 'appkit.swift')
