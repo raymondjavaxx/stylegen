@@ -49,7 +49,7 @@ class TestColor < Minitest::Test
 
     color = Stylegen::Color.new(1, 1, 0.9, 1)
 
-    refute_predicate color, :grayscale?
+    assert_not_predicate color, :grayscale?
   end
 
   def test_to_string
