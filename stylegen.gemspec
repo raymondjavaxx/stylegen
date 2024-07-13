@@ -15,9 +15,9 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.license = 'MIT'
 
-  s.add_runtime_dependency 'dry-cli', '~> 1.0.0'
-  s.add_runtime_dependency 'dry-inflector', '~> 1.1.0'
-  s.add_runtime_dependency 'json_schemer', '~> 2.3.0'
+  s.add_dependency 'dry-cli', '~> 1.0.0'
+  s.add_dependency 'dry-inflector', '~> 1.1.0'
+  s.add_dependency 'json_schemer', '~> 2.3.0'
 
   s.required_ruby_version = '>= 2.7.0'
   s.metadata['rubygems_mfa_required'] = 'true'
