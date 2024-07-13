@@ -6,8 +6,8 @@ module Stylegen
   class Color
     attr_reader :red, :green, :blue, :alpha
 
-    SIX_DIGIT_HEX_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/.freeze
-    THREE_DIGIT_HEX_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/.freeze
+    SIX_DIGIT_HEX_REGEX = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/
+    THREE_DIGIT_HEX_REGEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/
     MAX_PRECISION = 16
 
     def initialize(red, green, blue, alpha)
