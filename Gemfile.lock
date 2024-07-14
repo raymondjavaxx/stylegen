@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stylegen (0.7.0)
+    stylegen (0.8.0)
       dry-cli (~> 1.0.0)
       dry-inflector (~> 1.1.0)
       json_schemer (~> 2.3.0)
